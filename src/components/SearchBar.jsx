@@ -4,18 +4,18 @@ function Searchbar() {
   return (
     <div>
 
-        <form action="/" method="get">
-                <label htmlFor="header-search">
+        <form>
+            <label htmlFor="header-search">
                     {/* <span className="visually-hidden">Search blog posts</span> */}
                 </label>
                 <input
                     type="text"
                     id="header-search"
                     placeholder="Search your artist"
-                    name="s" 
+                    name="search" 
                 />
                 <button type="submit">Search</button>
-            </form>
+          </form>
 
     </div>
   )

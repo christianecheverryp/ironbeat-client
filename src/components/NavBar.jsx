@@ -1,11 +1,25 @@
-import { NavLink } from "react-router-dom"
+import { NavLink, useNavigate } from "react-router-dom"
 import profile_icon from "../images/profile_icon.png"
 import message_icon from "../images/message.png"
 import home_icon from "../images/home_icon.png"
 import SearchBar from "./SearchBar"
 
 
-function NavBar() {
+function NavBar(props) {
+
+const { isLogin, setIsLogin } = props
+
+const navigate = useNavigate();
+
+const handleLogOut = () => {
+
+  setIsLogin(false)
+  localStorage.removeItem("authToken")
+
+  navigate("/")
+
+}
+
   return (
     <div>
         <NavLink to="/profile">
@@ -23,6 +37,15 @@ function NavBar() {
             <img src={home_icon} alt="HomeImg" width={20} />
         </NavLink>
 
+        <NavLink to="/signup">
+            signup
+        </NavLink>
+
+        <NavLink to="/login">
+            login
+        </NavLink>
+
+        <button onClick={handleLogOut}>Logout</button>
         
 
     

@@ -2,7 +2,13 @@ import React from 'react'
 
 function Home() {
   return (
-    <div>Home</div>
+    <div>
+
+      <h1>Aqui van los 20 ultimos audios (ventana principal) </h1>
+
+
+
+    </div>
   )
 }
 
