@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { getMyProfileService } from '../../services/user.services'
 
 function MyProfile() {
@@ -39,9 +39,13 @@ function MyProfile() {
 
       <h3>Ventana de mi perfil</h3>
 
-        <img src={myProfile.imgProfile} alt="Profile-Picture" />
+        <img src={myProfile.imgProfile} alt="Profile-Picture" width={100}/>
         <p>{myProfile.username}</p>
         <p>{myProfile.bio}</p>
+
+
+
+        <Link to="/profile/edit"><button>Edit</button></Link>
 
 
 

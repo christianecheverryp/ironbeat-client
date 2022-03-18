@@ -2,7 +2,18 @@ import React from 'react'
 
 function AddSong() {
   return (
-    <div>AddSong</div>
+    <div>
+
+    <h3>Add your music</h3>
+
+    
+    
+    
+    
+    
+    
+    
+    </div>
   )
 }
 

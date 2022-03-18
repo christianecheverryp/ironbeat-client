@@ -15,6 +15,25 @@ const getMyProfileService = () => {
     return service.get("/")
 }
 
+const getUpdateService = (updateProfile) => {
+    return service.patch("/", updateProfile)
+}
+
+
+const deleteProfileService = () => {
+    return service.delete("/")
+}
+
+const getOtherProfile = (id) => {
+    return service.get(`/${id}`)
+}
+
+
+
+
 export {
-    getMyProfileService
+    getMyProfileService,
+    getUpdateService,
+    deleteProfileService,
+    getOtherProfile
 }

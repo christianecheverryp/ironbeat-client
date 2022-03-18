@@ -2,6 +2,7 @@ import { NavLink, useNavigate } from "react-router-dom"
 import profile_icon from "../images/profile_icon.png"
 import message_icon from "../images/message.png"
 import home_icon from "../images/home_icon.png"
+import add_icon from "../images/add_icon.png"
 import SearchBar from "./SearchBar"
 
 
@@ -25,6 +26,8 @@ const handleLogOut = () => {
         <NavLink to="/profile">
             <img src={profile_icon} alt="ProfileImg" width={20} />
         </NavLink>
+
+        <NavLink to="/add-song"> <img src={add_icon} alt="AddImg" width={20}/> </NavLink>
 
 
         <NavLink to="/messages">

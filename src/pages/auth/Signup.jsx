@@ -40,12 +40,15 @@ function Signup() {
       <form onSubmit={handleSubmit}>
         <label htmlFor="username">Username:</label>
         <input type="text" name='username' value={username} onChange={(e) => setUsername(e.target.value)} />
+        <br />
         
         <label htmlFor="email">Email:</label>
         <input type="text" name='email' value={email} onChange={(e) => setEmail(e.target.value)} />
+        <br />
 
         <label htmlFor="password">Password:</label>
         <input type="text" name='password' value={password} onChange={(e) => setPassword(e.target.value)} />
+        <br />
 
         <button>Register</button>
 
