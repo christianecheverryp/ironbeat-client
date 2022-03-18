@@ -15,10 +15,20 @@ const uploadImageService = (imageFile) => {
     return service.post("/", imageFile)
 }
 
+const uploadSongService = (audioFile) => {
+    return service.post("/audio", audioFile)
+}
+
+const uploadAlbumImgService = (albumImgFile) => {
+    return service.post("/img-album", albumImgFile)
+}
+
 
 
 
 export {
     uploadImageService,
+    uploadSongService,
+    uploadAlbumImgService
 
 }
