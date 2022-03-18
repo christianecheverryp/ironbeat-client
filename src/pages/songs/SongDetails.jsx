@@ -1,16 +1,34 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { getSongDetailsService } from '../../services/song.services';
+import WaveSurfer from "wavesurfer.js";
+
 
 function SongDetails() {
 
   const [ songDetail, setSongDetail ] = useState(null);
   const { id } = useParams();
 
+//////////////////////////////////////////////////////////////////////////////////////////////////
+
+const wavesurfer = Object.create(WaveSurfer);
+wavesurfer.init({
+    container: '#wave',
+    waveColor: 'violet',
+    progressColor: 'purple'
+});
+
+
+
+////////////////////////////////////////////////////////////////////////////////////////
+
+ 
+
   const navigate = useNavigate();
 
   useEffect(()=> {
     getSong();
+    
 
   }, [])
 
@@ -37,11 +55,16 @@ function SongDetails() {
     <h2>This is your song!</h2>
 
     <p>{songDetail.title}</p>
-    <img src={songDetail.imgSong} alt="Img-song" />
+    <img src={songDetail.imgSong} alt="Img-song" width={100} />
     <p>Price: {songDetail.price} €</p>
 
     <p>Audio: {songDetail.audioUrl}</p>
     <p>Owner: {songDetail.owner.username}</p>
+
+    <div id="waveform">
+    	
+     {/* {wavesurfer.load({songDetail.audioUrl})} */}
+    </div>
 
     
     
