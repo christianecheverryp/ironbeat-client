@@ -9,6 +9,9 @@ function DetailsProfile() {
   const navigate = useNavigate()
 
 
+  
+
+
   useEffect(()=> {
     getProfile()
 

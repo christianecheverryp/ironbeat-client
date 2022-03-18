@@ -60,7 +60,7 @@ function Login(props) {
 
       </form>
 
-      <p>{setErrorMessage}</p>
+      <p>{errorMessage}</p>
     
     
     
