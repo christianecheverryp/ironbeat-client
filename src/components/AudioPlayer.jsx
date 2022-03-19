@@ -9,7 +9,7 @@ const formWaveSurferOptions = (ref) => ({
   barWidth: 3,
   barRadius: 3,
   responsive: true,
-  height: 150,
+  height: 48,
   // If true, normalize by the maximum peak instead of 1.0.
   normalize: true,
   // Use the PeakCache to improve rendering speed of large waveforms.
@@ -27,7 +27,7 @@ function AudioPlayer(props) {
     const options = formWaveSurferOptions(waveformRef.current);
     wavesurfer.current = WaveSurfer.create(options);
 
-    wavesurfer.current.load(props.url);
+    wavesurfer.current.load(props.songDetail.audioUrl);
 
     wavesurfer.current.on("ready", function () {
       //EN EL EFFECT PONEMOS TODOS LOS PARAMETROS QUE QUERAMOS
@@ -45,12 +45,13 @@ function AudioPlayer(props) {
     // Removes events, elements and disconnects Web Audio nodes.
     // when component unmount
     return () => wavesurfer.current.destroy();
-  }, [props.url]);
+  }, [props.songDetail.audioUrl]);
 
   //FUNCIONES QUE QUERAMOS PONER
 
   const handlePlayPause = () => {
     setPlay(!playing);
+
     wavesurfer.current.playPause();
   };
 
@@ -65,10 +66,26 @@ function AudioPlayer(props) {
   };
 
   return (
-    <div>
-      <div id="waveform" ref={waveformRef} />
-      <div className="controls">
-        <button onClick={handlePlayPause}>{!playing ? "Play" : "Pause"}</button>
+    <div className="player">
+      <div className="thumb">
+        <img src={props.songDetail.imgSong} alt="" />
+      </div>
+
+      <div className="info">
+        <div className="detail">
+          <div className="title">
+            Titulo de la cancion
+            <div className="owner">
+              <span id="current">User</span>
+            </div>
+          </div>
+
+          <div className="control">
+            <i onClick={handlePlayPause}>{!playing ? "Play" : "Pause"}</i>
+          </div>
+        </div>
+
+        <div id="waveform" ref={waveformRef}></div>
         <input
           type="range"
           id="volume"
@@ -81,7 +98,7 @@ function AudioPlayer(props) {
           onChange={onVolumeChange}
           defaultValue={volume}
         />
-        <label htmlFor="volume">Volume</label>
+        <div>Comprar</div>
       </div>
     </div>
   );
