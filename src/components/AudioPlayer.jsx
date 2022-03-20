@@ -27,7 +27,7 @@ function AudioPlayer(props) {
     const options = formWaveSurferOptions(waveformRef.current);
     wavesurfer.current = WaveSurfer.create(options);
 
-    wavesurfer.current.load(props.songDetail.audioUrl);
+    wavesurfer.current.load(props.eachSong.audioUrl);
 
     wavesurfer.current.on("ready", function () {
       //EN EL EFFECT PONEMOS TODOS LOS PARAMETROS QUE QUERAMOS
@@ -45,7 +45,7 @@ function AudioPlayer(props) {
     // Removes events, elements and disconnects Web Audio nodes.
     // when component unmount
     return () => wavesurfer.current.destroy();
-  }, [props.songDetail.audioUrl]);
+  }, [props.eachSong.audioUrl]);
 
   //FUNCIONES QUE QUERAMOS PONER
 
@@ -68,13 +68,13 @@ function AudioPlayer(props) {
   return (
     <div className="player">
       <div className="thumb">
-        <img src={props.songDetail.imgSong} alt="" />
+        <img src={props.eachSong.imgSong} alt="" />
       </div>
 
       <div className="info">
         <div className="detail">
           <div className="title">
-            Titulo de la cancion
+            {props.eachSong.title}
             <div className="owner">
               <span id="current">User</span>
             </div>

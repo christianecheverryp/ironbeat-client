@@ -66,7 +66,7 @@ function SongDetails(props) {
     
     <div className='wave-container'>
       
-    <AudioPlayer songDetail={songDetail} />
+    <AudioPlayer eachSong={songDetail} />
     </div>
     
 

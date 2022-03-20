@@ -20,7 +20,13 @@ const getSongDetailsService = (id) => {
 }
 
 
+const getAllMusicService = () => {
+    return service.get("/")
+}
+
+
 export {
     addSongService,
-    getSongDetailsService
+    getSongDetailsService,
+    getAllMusicService
 }
