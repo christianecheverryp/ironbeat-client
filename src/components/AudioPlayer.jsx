@@ -3,6 +3,7 @@ import {Link} from "react-router-dom"
 import WaveSurfer from "wavesurfer.js";
 import { getSongDetailsService } from "../services/song.services";
 import { useNavigate, useParams } from 'react-router-dom'
+import { Button } from "@mui/material";
 
 const formWaveSurferOptions = (ref) => ({
   container: ref,
@@ -25,7 +26,6 @@ function AudioPlayer(props) {
   const [playing, setPlay] = useState(false); //AQUI ES PARA DAR EL PLAY
   const [volume, setVolume] = useState(0.5); //ESE ES EL VOLUMEN
 
-  const { id } = useParams();
 
 
   useEffect(() => {
@@ -82,8 +82,7 @@ function AudioPlayer(props) {
           <div className="title">
             <Link to={`/song/${props.eachSong._id}/details`}>{props.eachSong.title}</Link>     {/* PREGUNTAR SI HAY ALGUNA FORMA BONITA DE HACERLO */}
             <div className="owner">
-              <span id="current"><Link to={`/${props.eachSong.owner}`}>{props.eachSong.owner.username}</Link></span>
-              {console.log("propsssssss", props.eachSong.owner.username)}
+              <span id="current"><Link to={`/profile/${props.eachSong.owner._id}/details`}>{props.eachSong.owner.username}</Link></span>
             </div>
           </div>
 
@@ -105,7 +104,10 @@ function AudioPlayer(props) {
           onChange={onVolumeChange}
           defaultValue={volume}
         />
-        <div>Comprar</div>
+        <div className="owner">
+              <span id="current">Precio: {props.eachSong.price}</span>
+              <Button>Buy</Button>
+            </div>
       </div>
     </div>
   );

@@ -28,6 +28,9 @@ const getOtherProfile = (id) => {
     return service.get(`/${id}`)
 }
 
+const followService = (id) => {
+    return service.get(`/${id}/followers`)
+}
 
 
 
@@ -35,5 +38,6 @@ export {
     getMyProfileService,
     getUpdateService,
     deleteProfileService,
-    getOtherProfile
+    getOtherProfile,
+    followService
 }

@@ -1,16 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
-import { getOtherProfile } from '../../services/user.services'
+import { followService, getOtherProfile } from '../../services/user.services'
+import { Button } from "@mui/material";
 
 function DetailsProfile() {
 
   const [ otherProfile, setOtherProfile] = useState(null)
+  const [ follow, SetFollow ] = useState(false)
   const {id} = useParams()
   const navigate = useNavigate()
-
-
-  
-
 
   useEffect(()=> {
     getProfile()
@@ -37,9 +35,22 @@ function DetailsProfile() {
 
     }
   }
+
+  const handleFollow = async () =>{
+    try{
+      SetFollow(!follow)
+      followService(otherProfile._id)
+
+    }catch(err){
+
+    }
+  }
+
+
   if(!otherProfile){
     return <h3>...Loading</h3>
   }
+ 
 
 
 
@@ -56,6 +67,8 @@ function DetailsProfile() {
 <img src={otherProfile.imgProfile} alt="Profile-Picture" width={100}/>
 <p>{otherProfile.username}</p>
 <p>{otherProfile.bio}</p>
+
+<Button onClick={handleFollow}>{follow ? "UnFollow" : "Follow"}</Button>
 
 
 
