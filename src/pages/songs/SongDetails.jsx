@@ -12,6 +12,8 @@ function SongDetails(props) {
 
   const [ songDetail, setSongDetail ] = useState(null);
   const { id } = useParams();
+  const {isLogin} = props
+
 
   
 
@@ -66,7 +68,7 @@ function SongDetails(props) {
     
     <div className='wave-container'>
       
-    <AudioPlayer eachSong={songDetail} />
+    <AudioPlayer eachSong={songDetail} isLogin={isLogin} />
     </div>
     
 

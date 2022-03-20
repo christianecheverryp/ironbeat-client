@@ -4,6 +4,15 @@
 .App {
   text-align: center;
   
+  
+}
+.container{
+  display: flex;
+  justify-content: space-around;
+}
+
+.follow-view{
+  border-style: groove;
 }
 
 /* 

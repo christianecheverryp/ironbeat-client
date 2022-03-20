@@ -173,6 +173,9 @@ function NavBar(props) {
               {/* LOGO */}
             </Typography>
             <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
+            <NavLink to="/">
+                    <img src={home_icon} alt="HomeImg" width={20} />
+                  </NavLink>
               {/* AQUI IBAN LOS  LINKS ANTES PODRIAMOS PONER EL LOGO AQUI */}
 
 
@@ -233,9 +236,7 @@ function NavBar(props) {
                     <img src={profile_icon} alt="ProfileImg" width={20} />
                   </NavLink>
                   
-                  <NavLink to="/">
-                    <img src={home_icon} alt="HomeImg" width={20} />
-                  </NavLink>
+                  
                   <Typography textAlign="center">
                     {" "}
                     <button onClick={handleLogOut}>Logout</button>

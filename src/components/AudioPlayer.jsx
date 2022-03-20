@@ -25,6 +25,8 @@ function AudioPlayer(props) {
   const wavesurfer = useRef(null);
   const [playing, setPlay] = useState(false); //AQUI ES PARA DAR EL PLAY
   const [volume, setVolume] = useState(0.5); //ESE ES EL VOLUMEN
+  const { isLogin } = props;
+  console.log("heyyyyyyyy", props)
 
 
 
@@ -106,7 +108,8 @@ function AudioPlayer(props) {
         />
         <div className="owner">
               <span id="current">Precio: {props.eachSong.price}</span>
-              <Button>Buy</Button>
+              {isLogin && <Button>Buy</Button>}
+              
             </div>
       </div>
     </div>

@@ -2,9 +2,10 @@ import React, { useEffect, useState } from 'react'
 import AudioPlayer from '../components/AudioPlayer'
 import { getAllMusicService } from '../services/song.services'
 
-function Home() {
+function Home(props) {
 
   const [allMusic, setAllMusic] = useState(null)
+  const {isLogin} = props
 
   useEffect(()=> {
     getAllMusic()
@@ -31,7 +32,7 @@ function Home() {
       <h1>HOME</h1>
 
       {allMusic.map((eachSong)=> {
-        return <AudioPlayer eachSong={eachSong}/>
+        return <AudioPlayer eachSong={eachSong} isLogin={isLogin}/>
 
 
       })}

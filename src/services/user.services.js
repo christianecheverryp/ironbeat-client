@@ -24,12 +24,16 @@ const deleteProfileService = () => {
     return service.delete("/")
 }
 
-const getOtherProfile = (id) => {
+const getOtherProfile = (id, ) => {
     return service.get(`/${id}`)
 }
 
 const followService = (id) => {
     return service.get(`/${id}/followers`)
+}
+
+const getAllFollows = () => {
+    return service.get("/followers")
 }
 
 
@@ -39,5 +43,6 @@ export {
     getUpdateService,
     deleteProfileService,
     getOtherProfile,
-    followService
+    followService,
+    getAllFollows
 }

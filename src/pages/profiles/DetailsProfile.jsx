@@ -3,10 +3,11 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { followService, getOtherProfile } from '../../services/user.services'
 import { Button } from "@mui/material";
 
-function DetailsProfile() {
+function DetailsProfile(props) {
 
   const [ otherProfile, setOtherProfile] = useState(null)
   const [ follow, SetFollow ] = useState(false)
+  const { isLogin } = props;
   const {id} = useParams()
   const navigate = useNavigate()
 
@@ -68,7 +69,9 @@ function DetailsProfile() {
 <p>{otherProfile.username}</p>
 <p>{otherProfile.bio}</p>
 
-<Button onClick={handleFollow}>{follow ? "UnFollow" : "Follow"}</Button>
+
+{isLogin && <Button onClick={handleFollow}>{follow ? "UnFollow" : "Follow"}</Button>}
+
 
 
 

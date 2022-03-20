@@ -13,6 +13,7 @@ import Error from "./pages/Error"
 import NotFound from './pages/NotFound';
 import { useEffect, useState } from 'react';
 import { verifyService } from './services/auth.services';
+import FollowView from './components/FollowView';
 
 function App() {
 
@@ -36,25 +37,38 @@ function App() {
 
     <NavBar setIsLogin={setIsLogin} isLogin={isLogin}/>
 
-    <Routes >
-      <Route path='/' element={ <Home /> }/>
+<div className='container'>
+ 
+    
+    <div>
+      <Routes >
+      <Route path='/' element={ <Home isLogin={isLogin}/> }/>
       <Route path='/profile' element={ <MyProfile /> } />
-      <Route path='/profile/:id/details' element={ <DetailsProfile /> } />
+      <Route path='/profile/:id/details' element={ <DetailsProfile isLogin={isLogin}/> } />
       <Route path='/profile/edit' element={ <EditProfile /> } />
 
       <Route path='/add-song' element={ <AddSong /> } />
-      <Route path='/song/:id/details' element={ <SongDetails /> } />
+      <Route path='/song/:id/details' element={ <SongDetails isLogin={isLogin} /> } />
 
       <Route path='/login' element={ <Login setIsLogin={setIsLogin}/> } />
       <Route path='/signup' element={ <Signup /> } />
 
       <Route path='/error' element={ <Error /> } />
       <Route path='*' element={ <NotFound /> } />
+      <Route path='/followers' element={<FollowView/>}/>
 
       
       
 
     </Routes>
+    </div>
+    <div className='follow-view'>
+{isLogin && <FollowView/> }
+    </div>
+
+
+</div>
+   
 
       
 
