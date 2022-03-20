@@ -1,5 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
+import {Link} from "react-router-dom"
 import WaveSurfer from "wavesurfer.js";
+import { getSongDetailsService } from "../services/song.services";
+import { useNavigate, useParams } from 'react-router-dom'
 
 const formWaveSurferOptions = (ref) => ({
   container: ref,
@@ -21,6 +24,9 @@ function AudioPlayer(props) {
   const wavesurfer = useRef(null);
   const [playing, setPlay] = useState(false); //AQUI ES PARA DAR EL PLAY
   const [volume, setVolume] = useState(0.5); //ESE ES EL VOLUMEN
+
+  const { id } = useParams();
+
 
   useEffect(() => {
     setPlay(false);
@@ -74,9 +80,10 @@ function AudioPlayer(props) {
       <div className="info">
         <div className="detail">
           <div className="title">
-            {props.eachSong.title}
+            <Link to={`/song/${props.eachSong._id}/details`}>{props.eachSong.title}</Link>     {/* PREGUNTAR SI HAY ALGUNA FORMA BONITA DE HACERLO */}
             <div className="owner">
-              <span id="current">User</span>
+              <span id="current"><Link to={`/${props.eachSong.owner}`}>{props.eachSong.owner.username}</Link></span>
+              {console.log("propsssssss", props.eachSong.owner.username)}
             </div>
           </div>
 
