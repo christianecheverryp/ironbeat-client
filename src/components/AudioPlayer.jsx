@@ -62,6 +62,7 @@ function AudioPlayer(props) {
 
     wavesurfer.current.playPause();
   };
+  
 
   const onVolumeChange = (e) => {
     const { target } = e;

@@ -6,6 +6,7 @@ function Home(props) {
 
   const [allMusic, setAllMusic] = useState(null)
   const {isLogin} = props
+  
 
   useEffect(()=> {
     getAllMusic()
@@ -18,6 +19,11 @@ function Home(props) {
 
 
   }
+
+  // const pauseAllSongs = (pauseSingleSong) => {
+
+  //   pauseSingleSong()
+  // }
 
   if (!allMusic) {
     return <div>...loading</div>

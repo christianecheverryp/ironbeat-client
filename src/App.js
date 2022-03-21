@@ -18,6 +18,10 @@ import FollowView from './components/FollowView';
 function App() {
 
   const [ isLogin, setIsLogin ] = useState(false)
+  const [ logUserId, setLogUserId ] = useState(null)
+  const [ fetchingUser, setFetchingUser ] = useState(true)
+  const [ follows, setFollows ] = useState([])
+
 
   useEffect(() => {
     verifyUser()
@@ -25,11 +29,20 @@ function App() {
 
   const verifyUser = async () => {
     try{
-      await verifyService()
+      const response = await verifyService()
+      console.log(response.data._id)
+      setLogUserId(response.data._id)
       setIsLogin(true)
+      setFetchingUser(false)
     }catch(err){
+      setLogUserId(null)
       setIsLogin(false)
+      setFetchingUser(false)
     }
+  }
+
+  if (fetchingUser) {
+    <h3>...Loading</h3>
   }
 
   return (
@@ -42,9 +55,9 @@ function App() {
     
     <div>
       <Routes >
-      <Route path='/' element={ <Home isLogin={isLogin}/> }/>
+      <Route path='/' element={ <Home isLogin={isLogin} /> }/>
       <Route path='/profile' element={ <MyProfile /> } />
-      <Route path='/profile/:id/details' element={ <DetailsProfile isLogin={isLogin}/> } />
+      <Route path='/profile/:id/details' element={ <DetailsProfile isLogin={isLogin} logUserId={logUserId} follows={follows}/> } />
       <Route path='/profile/edit' element={ <EditProfile /> } />
 
       <Route path='/add-song' element={ <AddSong /> } />
@@ -63,7 +76,7 @@ function App() {
     </Routes>
     </div>
     <div className='follow-view'>
-{isLogin && <FollowView/> }
+{isLogin && <FollowView follows={follows} setFollows={setFollows}/> }
     </div>
 
 

@@ -29,7 +29,7 @@ const getOtherProfile = (id, ) => {
 }
 
 const followService = (id) => {
-    return service.get(`/${id}/followers`)
+    return service.patch(`/${id}/followers`)
 }
 
 const getAllFollows = () => {
