@@ -26,7 +26,8 @@ function AudioPlayer(props) {
   const [playing, setPlay] = useState(false); //AQUI ES PARA DAR EL PLAY
   const [volume, setVolume] = useState(0.5); //ESE ES EL VOLUMEN
   const { isLogin } = props;
-  console.log("heyyyyyyyy", props)
+  const navigate = useNavigate()
+  
 
 
 
@@ -74,6 +75,10 @@ function AudioPlayer(props) {
     }
   };
 
+  const handleAddList = () => {
+    navigate(`/${props.eachSong._id}/add-list`)
+  }
+
   return (
     <div className="player">
       <div className="thumb">
@@ -110,6 +115,11 @@ function AudioPlayer(props) {
         <div className="owner">
               <span id="current">Precio: {props.eachSong.price}</span>
               {isLogin && <Button>Buy</Button>}
+              
+            </div>
+            <div className="owner">
+             
+              {isLogin && <Button  onClick={handleAddList}>Add to Playlist</Button>}
               
             </div>
       </div>

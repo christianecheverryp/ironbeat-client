@@ -1,31 +1,17 @@
-import React, { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
-import { getAllFollows } from '../services/user.services'
+import React, { useEffect } from 'react'
 
 function FollowView(props) {
   const {follows, setFollows} = props
 
     
-    const navigate = useNavigate()
     
 
     useEffect(() => {
-      getFollowers()
 
 
-    }, [follows])
+    }, [])
     
-    const getFollowers = async () => {
-      try{
-       const response = await getAllFollows()
-       console.log(response.data)
-       setFollows(response.data)
-      }catch(err) {
-        navigate("/error")
-      }
-      
-
-    }
+    
     
     if(!follows){
       return <div>...loading</div>
