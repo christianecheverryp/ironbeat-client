@@ -17,7 +17,8 @@ import FollowView from './components/FollowView';
 import PlayListRender from './components/PlayListRender';
 import AddToPlaylist from './pages/AddToPlaylist';
 import { getAllFollows } from './services/user.services'
-import { ShoppingCart } from '@mui/icons-material';
+import ShoppingCart from './pages/ShoppingCart';
+
 
 function App() {
 
@@ -50,7 +51,11 @@ function App() {
     try{
      const response = await getAllFollows()
      setFollows(response.data)
-    //  console.log(follows)
+     
+     if(!follows){
+      return <div>...loading</div>
+    }
+     console.log("aquii tenemos follows", follows)
     }catch(err) {
       navigate("/error")
     }

@@ -36,8 +36,8 @@ const getAllFollows = () => {
     return service.get("/followers")
 }
 
-const shoppingCartService = (id, name) => {
-    return service.patch(`/${id}/cart`, {name})
+const shoppingCartService = (id) => {
+    return service.patch(`/${id}/cart`)
 }
 
 const getShoppingListService = () => {

@@ -19,6 +19,7 @@ function ShoppingCart() {
         try{
 
            const response = await getShoppingListService()
+           console.log(response.data)
            setShoppingList(response.data)
         }catch(err){
             navigate("/error")
@@ -38,7 +39,7 @@ function ShoppingCart() {
     <h3>AQUI VAN LAS COMPRAS</h3>
 
 
-    {shoppingList.map((eachShop)=>{
+    {shoppingList.shoppingList.map((eachShop)=>{
         return <p>{eachShop.title}</p>
     })}
 

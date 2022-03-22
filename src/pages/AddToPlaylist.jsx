@@ -7,7 +7,7 @@ import {
 } from "../services/playlist.services";
 
 function AddToPlaylist(props) {
-  const [title, setTitle] = useState("");
+  const [name, setName] = useState("");
   const navigate = useNavigate();
   const [allPlaylist, setAllPlaylist] = useState(null);
   const { id } = useParams();
@@ -31,7 +31,7 @@ function AddToPlaylist(props) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await createNewListService(id, { title });
+      await createNewListService(id, { name });
     } catch (err) {
       navigate("/error");
     }
@@ -54,12 +54,12 @@ function AddToPlaylist(props) {
       <h3>Here we add to the playlist</h3>
       <button>Nueva lista</button>
       <form onSubmit={handleSubmit}>
-        <label htmlFor="title">nombre de la lista:</label>
+        <label htmlFor="name">nombre de la lista:</label>
         <input
           type="text"
-          name="title"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
+          name="name"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
         />
         <br />
         <button>Crear</button>
@@ -74,17 +74,11 @@ function AddToPlaylist(props) {
           <option value="">Choose</option>
 
           {allPlaylist.map((eachList) => {
-            return (
-              <option
-                value={eachList.name}
-              >
-                {eachList.name}
-              </option>
-            );
+            return <option>{eachList.name}</option>
           })}
         </select>
-        {/* <button>add</button>
-       </form>  */}
+        <button>add</button>
+       {/* </form>  */}
     </div>
   );
 }

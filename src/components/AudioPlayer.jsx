@@ -4,6 +4,7 @@ import WaveSurfer from "wavesurfer.js";
 import { getSongDetailsService } from "../services/song.services";
 import { useNavigate, useParams } from 'react-router-dom'
 import { Button } from "@mui/material";
+import { shoppingCartService } from "../services/user.services";
 
 const formWaveSurferOptions = (ref) => ({
   container: ref,
@@ -79,8 +80,14 @@ function AudioPlayer(props) {
     navigate(`/${props.eachSong._id}/add-list`)
   }
 
-  const handleAddCart = () => {
-    navigate(`/${props.eachSong._id}/cart`)
+  const handleAddCart = async() => {
+    try{
+      await shoppingCartService(props.eachSong._id)
+
+    }catch(err){
+      navigate("/error")
+    }
+    
 
   }
 

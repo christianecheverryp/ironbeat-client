@@ -8,24 +8,26 @@ function DetailsProfile(props) {
   const { isLogin, logUserId, getFollowers, follows } = props;
   const { id } = useParams();
   const [otherProfile, setOtherProfile] = useState(null);
-  const [follow, setFollow] = useState(Boolean);
+  const [follow, setFollow] = useState(null);
   const navigate = useNavigate();
 
   useEffect(() => {
     getProfile();
     
-  }, []);
+  }, [id]);
 
   const getProfile = async () => {
     try {
       const response = await getOtherProfile(id);
+      if(!follows){
+        return <div>...loading</div>
+      }
       
-
       const followArray = follows.filter((eachFollow) => {
         return eachFollow.follows.includes(id)
         })
-        console.log(followArray)
-        // console.log(otherProfile._id)
+        console.log("eiiiii", followArray)
+       
 
 
         if (followArray.length < 1){
@@ -63,10 +65,21 @@ function DetailsProfile(props) {
     }
   };
 
+
+
+
+
+
+
+
+  
+
   if (logUserId == id) {
     navigate("/profile");
   }
-console.log(follows)
+
+  
+console.log("holaaaaa", follows)
 
 
   if (!otherProfile) {
