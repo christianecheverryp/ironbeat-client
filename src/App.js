@@ -25,7 +25,7 @@ function App() {
   const [ isLogin, setIsLogin ] = useState(false)
   const [ logUserId, setLogUserId ] = useState(null)
   const [ fetchingUser, setFetchingUser ] = useState(true)
-  const [ follows, setFollows ] = useState([])
+  const [ follows, setFollows ] = useState(null)
 
   const navigate = useNavigate()
 
@@ -51,11 +51,9 @@ function App() {
     try{
      const response = await getAllFollows()
      setFollows(response.data)
+     console.log(response.data)
+
      
-     if(!follows){
-      return <div>...loading</div>
-    }
-     console.log("aquii tenemos follows", follows)
     }catch(err) {
       navigate("/error")
     }
@@ -65,6 +63,10 @@ function App() {
     <h3>...Loading</h3>
   }
 
+if(!follows){
+      return <div>...loading</div>
+    }
+     console.log("aquii tenemos follows", follows)
   return (
     <div className="App">
 

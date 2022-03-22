@@ -11,7 +11,7 @@ function AddToPlaylist(props) {
   const navigate = useNavigate();
   const [allPlaylist, setAllPlaylist] = useState(null);
   const { id } = useParams();
-//   const [selectedOption, setSelectedOption] = useState(title[0].value);
+  const [listToAdd, setListToAdd] = useState("")
 
   useEffect(() => {
     getAllPlaylist();
@@ -37,13 +37,31 @@ function AddToPlaylist(props) {
     }
   };
 
-//   const handleOldList = async (selectedOption) => {
-//     try {
-//       await updateNewList(id, selectedOption);
-//     } catch (err) {
-//       navigate("/error");
-//     }
-//   };
+  // crear estado para controlar el select
+
+
+  const handleSelectPlaylist = (e) => {
+      e.preventDefault()
+      console.log(e.target.value)
+      setListToAdd(e.target.value)
+
+  }
+
+
+
+
+
+  const handleOldList = async (e) => {
+      e.preventDefault()
+
+    try {
+        
+
+      await updateNewList(id, listToAdd);
+    } catch (err) {
+      navigate("/error");
+    }
+  };
 
   if (!allPlaylist) {
     return <div>...loading</div>;
@@ -67,18 +85,18 @@ function AddToPlaylist(props) {
 
       <h4>AQUI LISTAS ANTIGUAS</h4>
 
-      {/* <form onSubmit={handleOldList}> */}
+      <form onSubmit={handleOldList}>
         <label htmlFor="list">Choose the playlist:</label>
 
-        <select name="list">
+        <select name="list" value={listToAdd} onChange={handleSelectPlaylist}>
           <option value="">Choose</option>
 
           {allPlaylist.map((eachList) => {
-            return <option>{eachList.name}</option>
+            return <option value={eachList._id}>{eachList.name}</option>
           })}
         </select>
         <button>add</button>
-       {/* </form>  */}
+       </form> 
     </div>
   );
 }

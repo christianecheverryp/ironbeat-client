@@ -23,8 +23,8 @@ const createNewListService = (id, name) =>{
 
 }
 
-const updateNewList = (idSong, title) =>{
-    return service.patch(`/${idSong}/old`, title )
+const updateNewList = (idSong, playlistId) =>{
+    return service.patch(`/${idSong}/old`, {playlistId} )
 
 }
 
