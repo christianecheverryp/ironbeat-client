@@ -36,6 +36,14 @@ const getAllFollows = () => {
     return service.get("/followers")
 }
 
+const shoppingCartService = (id, name) => {
+    return service.patch(`/${id}/cart`, {name})
+}
+
+const getShoppingListService = () => {
+    return service.get("/my-cart")
+}
+
 
 
 export {
@@ -44,5 +52,8 @@ export {
     deleteProfileService,
     getOtherProfile,
     followService,
-    getAllFollows
+    getAllFollows,
+    shoppingCartService,
+    getShoppingListService
+    
 }

@@ -17,6 +17,7 @@ import FollowView from './components/FollowView';
 import PlayListRender from './components/PlayListRender';
 import AddToPlaylist from './pages/AddToPlaylist';
 import { getAllFollows } from './services/user.services'
+import { ShoppingCart } from '@mui/icons-material';
 
 function App() {
 
@@ -34,7 +35,6 @@ function App() {
   const verifyUser = async () => {
     try{
       const response = await verifyService()
-      console.log(response.data._id)
       setLogUserId(response.data._id)
       setIsLogin(true)
       getFollowers()
@@ -50,6 +50,7 @@ function App() {
     try{
      const response = await getAllFollows()
      setFollows(response.data)
+    //  console.log(follows)
     }catch(err) {
       navigate("/error")
     }
@@ -82,7 +83,8 @@ function App() {
       <Route path='/song/:id/details' element={ <SongDetails isLogin={isLogin} /> } />
 
       <Route path='/:id/add-list' element={ <AddToPlaylist/>}/>
-
+      
+      <Route path="/shopping-cart" element={<ShoppingCart/>}/>
 
 
 
@@ -92,7 +94,7 @@ function App() {
 
       <Route path='/error' element={ <Error /> } />
       <Route path='*' element={ <NotFound /> } />
-      {/* <Route path='/followers' element={<FollowView/>}/> */}
+      <Route path='/followers' element={<FollowView/>}/>
 
       
       

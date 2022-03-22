@@ -8,7 +8,7 @@ function AddToPlaylist(props) {
     const [name, setName] = useState("")
     const navigate = useNavigate()
     const [ allPlaylist, setAllPlaylist ] = useState(null)
-    const { idSong } = useParams();
+    const { id } = useParams();
 
     useEffect(() => {
         getAllPlaylist()
@@ -31,7 +31,7 @@ function AddToPlaylist(props) {
     const handleSubmit = async(e) => {
         e.preventDefault()
          try{
-             await createNewListService(idSong, {name})
+             await createNewListService(id, {name})
              
          }catch(err){
             navigate("/error")
@@ -67,16 +67,19 @@ function AddToPlaylist(props) {
 
     <h4>AQUI LISTAS ANTIGUAS</h4>
 
+
+    <label htmlFor="list">Choose the playlist:</label>
+
+    <select name='list'>
+    <option value="" >Choose a list</option>
+
     {allPlaylist.map((eachList)=> {
-        return (
-            <div>
-            <button><p>{eachList.name}</p></button>
-            <p>{eachList.list.length} songs</p>
-            </div>
-        )
+        return <option value={eachList.name}>{eachList.name}</option>
+            
+        
     })}
 
-
+</select>
 
 
 

@@ -79,6 +79,11 @@ function AudioPlayer(props) {
     navigate(`/${props.eachSong._id}/add-list`)
   }
 
+  const handleAddCart = () => {
+    navigate(`/${props.eachSong._id}/cart`)
+
+  }
+
   return (
     <div className="player">
       <div className="thumb">
@@ -114,7 +119,7 @@ function AudioPlayer(props) {
         />
         <div className="owner">
               <span id="current">Precio: {props.eachSong.price}</span>
-              {isLogin && <Button>Buy</Button>}
+              {isLogin && <Button onClick={handleAddCart}>Buy</Button>}
               
             </div>
             <div className="owner">

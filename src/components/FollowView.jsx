@@ -6,37 +6,20 @@ function FollowView(props) {
     
     
 
-<<<<<<< HEAD
-/*     useEffect(() => {
-      getFollowers()
 
-
-    }, [follows]) */
-    
-    /* const getFollowers = async () => {
-      try{
-       const response = await getAllFollows()
-       console.log(response.data)
-       setFollows(response.data)
-      }catch(err) {
-        navigate("/error")
-      }
+   useEffect(() => {
       
 
-    }
-=======
-    useEffect(() => {
 
-
-    }, [])
+    }, []) 
     
     
->>>>>>> 049ccee7ec8bee5ffb431445567f305d632f139d
+
     
     if(!follows){
       return <div>...loading</div>
     }
- */
+ 
   return (
     <div>
 
