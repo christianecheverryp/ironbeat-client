@@ -18,13 +18,13 @@ const getListService = () =>{
 }
 
 
-const createNewListService = (id, name) =>{
-    return service.post(`/${id}/new`, name)
+const createNewListService = (id, title) =>{
+    return service.post(`/${id}/new`, title)
 
 }
 
-const updateNewList = (idSong, idList) =>{
-    return service.patch(`/${idSong}/old/${idList}`)
+const updateNewList = (idSong, name) =>{
+    return service.patch(`/${idSong}/old`, name )
 
 }
 
