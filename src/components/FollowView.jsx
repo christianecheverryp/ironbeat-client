@@ -9,13 +9,13 @@ function FollowView(props) {
     const navigate = useNavigate()
     
 
-    useEffect(() => {
+/*     useEffect(() => {
       getFollowers()
 
 
-    }, [follows])
+    }, [follows]) */
     
-    const getFollowers = async () => {
+    /* const getFollowers = async () => {
       try{
        const response = await getAllFollows()
        console.log(response.data)
@@ -30,7 +30,7 @@ function FollowView(props) {
     if(!follows){
       return <div>...loading</div>
     }
-
+ */
   return (
     <div>
 

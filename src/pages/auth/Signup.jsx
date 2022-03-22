@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { signupService } from '../../services/auth.services'
+import "../../css/sign_up.css"
 
 function Signup() {
 
@@ -33,9 +34,9 @@ function Signup() {
   }
 
   return (
-    <div>
+/*     <div>
     
-      <h3>Sign Up</h3>
+       <h3>Sign Up</h3>
 
       <form onSubmit={handleSubmit}>
         <label htmlFor="username">Username:</label>
@@ -54,16 +55,51 @@ function Signup() {
 
       </form>
 
-      <p>{errorMessage}</p>
+      <p>{errorMessage}</p> 
+    </div> */
+<div id='hola'>
 
 
-    
-    
-    
-    
-    
-    
-    </div>
+<div class="signupSection">
+  <div class="info-signup">
+    <h2>Frase molona para la web</h2>
+    <i class="icon ion-ios-ionic-outline" aria-hidden="true"></i>
+    <p>Algo molono tambien</p>
+  </div>
+
+  <form onSubmit={handleSubmit} class="signupForm" name="signupform">
+    <h2>Sign Up</h2>
+    <ul class="noBullet">
+
+      <li>
+        <label htmlFor="username"></label>
+        <input type="text" class="inputFields" id="username" name='username' placeholder='Username' value={username} onChange={(e) => setUsername(e.target.value)}/>
+      </li>
+
+      <li>
+        <label htmlFor="password"></label>
+        <input type="password" class="inputFields" id="password" name="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)}/>
+      </li>
+
+      <li>
+        <label htmlFor="email"></label>
+        <input type="email" class="inputFields" id="email" name="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)}/>
+      </li>
+
+      <li id='center-btn'>
+        <input type="submit" id="join-btn" name="join" alt="Join" value="Join" />
+
+      </li>
+
+
+    </ul>
+  </form>
+
+</div>
+
+
+
+</div>
   )
 }
 

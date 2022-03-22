@@ -2,6 +2,7 @@ import React from 'react'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { loginService } from '../../services/auth.services'
+import "../../css/login.css"
 
 function Login(props) {
 
@@ -45,7 +46,7 @@ function Login(props) {
 
 
   return (
-    <div>
+/*     <div>
 
       <form onSubmit={handleSubmit}>
           <label htmlFor="username">Username:</label>
@@ -64,7 +65,44 @@ function Login(props) {
     
     
     
-    </div>
+    </div> */
+
+
+    <div id='hola'>
+
+
+<div class="loginSection">
+
+
+  <form onSubmit={handleSubmit} class="signupForm-login" name="signupform">
+    <h2>Sign Up</h2>
+    <ul class="noBullet">
+
+      <li>
+        <label htmlFor="username"></label>
+        <input type="text" class="inputFields" id="username-login" name='username' placeholder='Username' value={username} onChange={(e) => setUsername(e.target.value)}/>
+      </li>
+
+      <li>
+        <label htmlFor="password"></label>
+        <input type="password" class="inputFields" id="password-login" name="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)}/>
+      </li>
+
+
+      <li id='center-btn'>
+        <input type="submit" id="join-btn-login" name="join" alt="Join" value="Join" />
+
+      </li>
+
+
+    </ul>
+  </form>
+
+</div>
+
+
+
+</div>
   )
 }
 

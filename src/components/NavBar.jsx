@@ -19,11 +19,20 @@ import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import { AccessAlarm, PagesSharp, ThreeDRotation } from "@mui/icons-material";
+import ListItemIcon from '@mui/material/ListItemIcon';
 import Switch from "@mui/material/Switch";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import FormGroup from "@mui/material/FormGroup";
 import SearchField from "./SearchField";
 // const pages = ['Products', 'Pricing', 'Blog'];
+import PasswordIcon from '@mui/icons-material/Password';
+import LoginIcon from '@mui/icons-material/Login';
+
+import AddIcon from '@mui/icons-material/Add';
+import EmailIcon from '@mui/icons-material/Email';
+import PersonIcon from '@mui/icons-material/Person';
+import Logout from '@mui/icons-material/Logout';
+
 
 
 function NavBar(props) {
@@ -172,6 +181,7 @@ function NavBar(props) {
             >
               {/* LOGO */}
             </Typography>
+
             <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             <NavLink to="/">
                     <img src={home_icon} alt="HomeImg" width={20} />
@@ -219,7 +229,7 @@ function NavBar(props) {
                 open={Boolean(anchorElUser)}
                 onClose={handleCloseUserMenu}
               >
-                <MenuItem onClick={handleCloseUserMenu}>
+                {/* <MenuItem onClick={handleCloseUserMenu}>
                   {" "}
            
                   <Button
@@ -241,7 +251,46 @@ function NavBar(props) {
                     {" "}
                     <button onClick={handleLogOut}>Logout</button>
                   </Typography>
-                </MenuItem>
+                </MenuItem> */}
+
+              <MenuItem component={RouterLink}
+                      to="/add-song">
+                <ListItemIcon>
+                  <AddIcon fontSize="small" />
+                </ListItemIcon>
+                  Add Song
+              </MenuItem>
+
+              <MenuItem component={RouterLink}
+                      to="/messages">
+                <ListItemIcon>
+                  <EmailIcon fontSize="small" />
+                </ListItemIcon>
+                  Messages
+              </MenuItem>
+
+              <MenuItem component={RouterLink}
+                      to="/profile">
+                <ListItemIcon>
+                  <PersonIcon fontSize="small" />
+                </ListItemIcon>
+                  Profile
+              </MenuItem>
+
+              <MenuItem onClick={handleLogOut}>
+                <ListItemIcon>
+                  <Logout fontSize="small" />
+                </ListItemIcon>
+                  Logout
+              </MenuItem>
+
+                
+
+
+
+
+
+
               </Menu>
             </Box>
              :  <Box sx={{ flexGrow: 0 }}>
@@ -268,24 +317,58 @@ function NavBar(props) {
                 open={Boolean(anchorElUser2)}
                 onClose={handleCloseUserMenu2}
               >
-                <MenuItem onClick={handleCloseUserMenu2}>
+                {/* <MenuItem onClick={handleCloseUserMenu2}>
                   {" "}
-                  {/* FUNCIONALIDADES DEL MENU USUARIO */}
-                  <Button
+
+                  { FUNCIONALIDADES DEL MENU USUARIO *
+
+                  <Typography textAlign="center">SignUp</Typography>
+                  
+                  <Typography textAlign="center">LogIn</Typography>
+
+                   <Button
                     component={RouterLink}
                     to="/signup"
                     sx={{ my: 2, color: "white", display: "block" }}
                   >
                     SignUp
-                  </Button>
-                  <Button
+                  </Button> */}
+
+
+                  {/* <Button
                     component={RouterLink}
                     to="/login"
                     sx={{ my: 2, color: "white", display: "block" }}
                   >
                     Login
-                  </Button>
+                  </Button> 
+
                 </MenuItem>
+ */}
+                <MenuItem component={RouterLink}
+                    to="/signup">
+          <ListItemIcon>
+            <PasswordIcon fontSize="small" />
+          </ListItemIcon>
+          Sig Up
+        </MenuItem>
+
+        <MenuItem component={RouterLink}
+                    to="/login">
+          <ListItemIcon>
+            <LoginIcon fontSize="small" />
+          </ListItemIcon>
+          Login
+        </MenuItem>
+{/*         <MenuItem>
+          <ListItemIcon>
+            <Logout fontSize="small" />
+          </ListItemIcon>
+          Logout
+        </MenuItem> */}
+
+
+
               </Menu>
             </Box>}
             

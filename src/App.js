@@ -68,7 +68,7 @@ function App() {
 
       <Route path='/error' element={ <Error /> } />
       <Route path='*' element={ <NotFound /> } />
-      <Route path='/followers' element={<FollowView/>}/>
+      {/* <Route path='/followers' element={<FollowView/>}/> */}
 
       
       
