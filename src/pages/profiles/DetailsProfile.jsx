@@ -5,12 +5,12 @@ import { Button } from "@mui/material";
 import "../../css/details_profile.css"
 
 function DetailsProfile(props) {
-  const [otherProfile, setOtherProfile] = useState(null);
-  const [follow, SetFollow] = useState(false);
-  const { isLogin, logUserId } = props;
+  const { isLogin, logUserId, getFollowers, follows } = props;
   const { id } = useParams();
+  const [otherProfile, setOtherProfile] = useState(null);
+  const [follow, setFollow] = useState(Boolean);
   const navigate = useNavigate();
-  console.log(props)
+  
 
   useEffect(() => {
     getProfile();
@@ -20,8 +20,15 @@ function DetailsProfile(props) {
 
     try {
       const response = await getOtherProfile(id);
-      console.log(response.data);
       
+      
+
+      
+      // console.log(follows)
+      // kata
+      // tienen follows
+      // tienen response.data con el usuario actual
+      // cambiarian SetFollow a true o false
 
       setOtherProfile(response.data);
     } catch (err) {
@@ -33,8 +40,18 @@ function DetailsProfile(props) {
 
   const handleFollow = async () => {
     try {
-      SetFollow(!follow);
       followService(otherProfile._id);
+      // setFollow(!follow);
+
+      getFollowers()
+
+// if(follows[0].follows.includes(otherProfile._id)){
+//   setFollow(true)
+// } else {
+//   setFollow(false)
+// }
+ 
+      
     } catch (err) {
       navigate("/error")
     }

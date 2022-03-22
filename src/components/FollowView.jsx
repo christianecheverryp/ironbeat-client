@@ -1,14 +1,12 @@
-import React, { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
-import { getAllFollows } from '../services/user.services'
+import React, { useEffect } from 'react'
 
 function FollowView(props) {
   const {follows, setFollows} = props
 
     
-    const navigate = useNavigate()
     
 
+<<<<<<< HEAD
 /*     useEffect(() => {
       getFollowers()
 
@@ -26,6 +24,14 @@ function FollowView(props) {
       
 
     }
+=======
+    useEffect(() => {
+
+
+    }, [])
+    
+    
+>>>>>>> 049ccee7ec8bee5ffb431445567f305d632f139d
     
     if(!follows){
       return <div>...loading</div>

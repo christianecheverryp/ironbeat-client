@@ -1,4 +1,4 @@
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, useNavigate } from 'react-router-dom';
 import './App.css';
 import NavBar from './components/NavBar';
 import Login from './pages/auth/Login';
@@ -14,6 +14,9 @@ import NotFound from './pages/NotFound';
 import { useEffect, useState } from 'react';
 import { verifyService } from './services/auth.services';
 import FollowView from './components/FollowView';
+import PlayListRender from './components/PlayListRender';
+import AddToPlaylist from './pages/AddToPlaylist';
+import { getAllFollows } from './services/user.services'
 
 function App() {
 
@@ -22,6 +25,7 @@ function App() {
   const [ fetchingUser, setFetchingUser ] = useState(true)
   const [ follows, setFollows ] = useState([])
 
+  const navigate = useNavigate()
 
   useEffect(() => {
     verifyUser()
@@ -33,11 +37,21 @@ function App() {
       console.log(response.data._id)
       setLogUserId(response.data._id)
       setIsLogin(true)
+      getFollowers()
       setFetchingUser(false)
     }catch(err){
       setLogUserId(null)
       setIsLogin(false)
       setFetchingUser(false)
+    }
+  }
+
+  const getFollowers = async () => {
+    try{
+     const response = await getAllFollows()
+     setFollows(response.data)
+    }catch(err) {
+      navigate("/error")
     }
   }
 
@@ -51,17 +65,27 @@ function App() {
     <NavBar setIsLogin={setIsLogin} isLogin={isLogin}/>
 
 <div className='container'>
+
+<div className='follow-view'>
+{isLogin && <PlayListRender/> }
+    </div>
  
     
     <div>
       <Routes >
       <Route path='/' element={ <Home isLogin={isLogin} /> }/>
       <Route path='/profile' element={ <MyProfile /> } />
-      <Route path='/profile/:id/details' element={ <DetailsProfile isLogin={isLogin} logUserId={logUserId} follows={follows}/> } />
+      <Route path='/profile/:id/details' element={ <DetailsProfile isLogin={isLogin} logUserId={logUserId} follows={follows} getFollowers={getFollowers}/> } />
       <Route path='/profile/edit' element={ <EditProfile /> } />
 
       <Route path='/add-song' element={ <AddSong /> } />
       <Route path='/song/:id/details' element={ <SongDetails isLogin={isLogin} /> } />
+
+      <Route path='/:id/add-list' element={ <AddToPlaylist/>}/>
+
+
+
+
 
       <Route path='/login' element={ <Login setIsLogin={setIsLogin}/> } />
       <Route path='/signup' element={ <Signup /> } />
@@ -76,7 +100,7 @@ function App() {
     </Routes>
     </div>
     <div className='follow-view'>
-{isLogin && <FollowView follows={follows} setFollows={setFollows}/> }
+{isLogin && <FollowView follows={follows}/> }
     </div>
 
 
