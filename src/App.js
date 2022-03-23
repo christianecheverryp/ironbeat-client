@@ -63,9 +63,9 @@ function App() {
     <h3>...Loading</h3>
   }
 
-if(!follows){
-      return <div>...loading</div>
-    }
+// if(!follows){
+//       return <div>...loading</div>
+//     }
      console.log("aquii tenemos follows", follows)
   return (
     <div className="App">
