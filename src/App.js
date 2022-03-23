@@ -27,6 +27,7 @@ function App() {
   const [ fetchingUser, setFetchingUser ] = useState(true)
   const [ follows, setFollows ] = useState([])
 
+
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -47,6 +48,7 @@ function App() {
     }
   }
 
+
   const getFollowers = async () => {
     try{
      const response = await getAllFollows()
@@ -55,7 +57,7 @@ function App() {
      if(!follows){
       return <div>...loading</div>
     }
-     console.log("aquii tenemos follows", follows)
+  
     }catch(err) {
       navigate("/error")
     }

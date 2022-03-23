@@ -26,7 +26,7 @@ function DetailsProfile(props) {
       const followArray = follows.filter((eachFollow) => {
         return eachFollow.follows.includes(id)
         })
-        console.log("eiiiii", followArray)
+        
        
 
 
@@ -79,7 +79,6 @@ function DetailsProfile(props) {
   }
 
   
-console.log("holaaaaa", follows)
 
 
   if (!otherProfile) {

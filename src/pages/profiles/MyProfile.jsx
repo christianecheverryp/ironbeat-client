@@ -51,15 +51,20 @@ function MyProfile() {
 
         <div class="content">
           <div class="card">
-            <div class="firstinfo"><img src="https://randomuser.me/api/portraits/lego/6.jpg"/>
+            <div class="firstinfo"><img src={myProfile.imgProfile}/>
               <div class="profileinfo">
-                <h1>Francesco Moustache</h1>
+                <h1>{myProfile.username}</h1>
                 <h3>Python Ninja</h3>
-                <p class="bio">Lived all my life on the top of mount Fuji, learning the way to be a Ninja Dev.</p>
+                <p class="bio">{myProfile.bio}</p>
+              <Link to="/profile/edit"><button>Edit</button></Link>
               </div>
             </div>
           </div>
-          <div class="badgescard"> <span class="devicons devicons-django"></span><span class="devicons devicons-python"> </span><span class="devicons devicons-codepen"></span><span class="devicons devicons-javascript_badge"></span><span class="devicons devicons-gulp"></span><span class="devicons devicons-angular"></span><span class="devicons devicons-sass"> </span></div>
+          <div class="badgescard"> 
+            <span class="devicons devicons-django"></span>
+            <span class="devicons devicons-python"> </span>
+            <span class="devicons devicons-codepen"></span>
+          </div>
         </div>
 
 

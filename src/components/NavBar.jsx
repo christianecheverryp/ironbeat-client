@@ -1,11 +1,5 @@
 import { NavLink, useNavigate, Link as RouterLink } from "react-router-dom";
-import profile_icon from "../images/profile_icon.png";
-import message_icon from "../images/message.png";
-import home_icon from "../images/home_icon.png";
-import add_icon from "../images/add_icon.png";
-import SearchBar from "./SearchBar";
-
-import * as React from "react";
+import React, { useEffect, useState } from 'react'
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -15,14 +9,10 @@ import Menu from "@mui/material/Menu";
 import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
 import Avatar from "@mui/material/Avatar";
-import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
-import { AccessAlarm, PagesSharp, ThreeDRotation } from "@mui/icons-material";
 import ListItemIcon from '@mui/material/ListItemIcon';
-import Switch from "@mui/material/Switch";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import FormGroup from "@mui/material/FormGroup";
+
 import SearchField from "./SearchField";
 // const pages = ['Products', 'Pricing', 'Blog'];
 import PasswordIcon from '@mui/icons-material/Password';
@@ -32,14 +22,39 @@ import AddIcon from '@mui/icons-material/Add';
 import EmailIcon from '@mui/icons-material/Email';
 import PersonIcon from '@mui/icons-material/Person';
 import Logout from '@mui/icons-material/Logout';
+import HomeIcon from '@mui/icons-material/Home';
+import { getMyProfileService } from "../services/user.services";
+
+
 
 
 
 function NavBar(props) {
   const { isLogin, setIsLogin } = props;
+  const [imgNavProfile, setImgNavProfile] = useState("")
+
+
   
 
   const navigate = useNavigate();
+
+  useEffect(()=> {
+    getProfile()
+  }, [])
+ 
+  const getProfile = async() => {
+    try{
+      const response = await getMyProfileService()
+      setImgNavProfile(response.data)
+      
+
+    } catch(err){
+      navigate("/error")
+    }
+
+  }
+
+
 
   const handleLogOut = () => {
     setIsLogin(false);
@@ -47,6 +62,8 @@ function NavBar(props) {
 
     navigate("/");
   };
+
+
 
   /* INICIO ESTILOS MUI */
 
@@ -124,15 +141,7 @@ function NavBar(props) {
           <Toolbar disableGutters>
 
           <SearchField /> {/* BARRA DE BUSQUEDA */}
-            <Typography
-              variant="h6"
-              noWrap
-              component="div"
-              sx={{ mr: 2, display: { xs: "none", md: "flex" } }}
-            >
-              LOGO
-            </Typography>
-            
+                        
             <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
               <IconButton
                 size="large"
@@ -183,11 +192,15 @@ function NavBar(props) {
             </Typography>
 
             <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-            <NavLink to="/">
-                    <img src={home_icon} alt="HomeImg" width={20} />
-                  </NavLink>
-              {/* AQUI IBAN LOS  LINKS ANTES PODRIAMOS PONER EL LOGO AQUI */}
 
+            {/* <NavLink to="/">
+              <HomeIcon fontSize="large" />
+            </NavLink> */}
+              {/* AQUI IBAN LOS  LINKS ANTES PODRIAMOS PONER EL LOGO AQUI */}
+              <IconButton component={RouterLink}
+                      to="/" size="large" color="inherit">
+                <HomeIcon />
+            </IconButton>
 
 
 
@@ -208,7 +221,7 @@ function NavBar(props) {
               <Box sx={{ flexGrow: 0 }}>
               <Tooltip title="Open settings">
                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                  <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />{" "}         
+                  <Avatar alt="Remy Sharp"  src={imgNavProfile.imgProfile}/>        
                   {/* AQUI PONEMOS LA FOTO DEL USUARIO */}
                 </IconButton>
               </Tooltip>
@@ -296,7 +309,7 @@ function NavBar(props) {
              :  <Box sx={{ flexGrow: 0 }}>
               <Tooltip title="Open settings">
                 <IconButton onClick={handleOpenUserMenu2} sx={{ p: 0 }}>
-                  <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />{" "}
+                  <Avatar alt="Remy Sharp" src={imgNavProfile.imgProfile} />{" "}
                   {/* AQUI PONEMOS LA FOTO DEL USUARIO */}
                 </IconButton>
               </Tooltip>
