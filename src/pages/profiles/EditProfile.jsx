@@ -3,6 +3,9 @@ import { useNavigate } from 'react-router-dom'
 import { deleteProfileService, getMyProfileService, getUpdateService } from '../../services/user.services'
 
 import { uploadImageService } from "../../services/upload.services"
+import Container from '@mui/material/Container';
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
 
 function EditProfile() {
 
@@ -86,59 +89,28 @@ function EditProfile() {
  }
 
 
-
-
-
-
   return (
-    <div>
+    <Box component="form"sx={{'& > :not(style)': { m: 1, width: '25ch' },}} noValidate autoComplete="off">
+
+      
+      <TextField id="outlined-basic" label="Username" variant="outlined" />   
 
 
-    <h3>Edit your profile</h3>
-
-    <form onSubmit={handleSubmit} encType="multipart/form-data">
-
-    <label htmlFor="username">Username:</label>
-    <input type="text" name='username' value={username} onChange={(e) => setUsername(e.target.value)}/>
-    <br />
-
-    <label htmlFor="imgProfile">Profile picture:</label>
-    <input type="file" name='imgProfile' onChange={(e) => handleFileUpload(e)}/>
-    <br />
-
-    { imageUploading ? <div>...Loading</div> : <img src={imgProfile} alt="current-pic" width={100} />}
- 
-    
-
-    <label htmlFor="bio">Bio:</label>
-    <input type="text" name='bio' value={bio} onChange={(e) => setBio(e.target.value)}/>
-    <br />
-    <button>Update profile</button>
-
-    <br /><br /><br /><br />
+      <TextField
+          id="outlined-multiline-flexible"
+          label="Bio"
+          multiline
+          maxRows={4}
+          value={bio}
+          onChange={(e) => setBio(e.target.value)}
+        />
 
 
-
-
-
-
-    </form>
-
-    <button onClick={handleClick}>Delete your account</button>
-
-
-
-
+    </Box>
     
     
     
     
-    
-    
-    
-    
-    
-    </div>
   )
 }
 
