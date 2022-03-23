@@ -1,8 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import {Link} from "react-router-dom"
 import WaveSurfer from "wavesurfer.js";
-import { getSongDetailsService } from "../services/song.services";
-import { useNavigate, useParams } from 'react-router-dom'
+import { getSongDetailsService, getSongPlaysService } from "../services/song.services";
+import { useNavigate } from 'react-router-dom'
 import { Button } from "@mui/material";
 import { shoppingCartService } from "../services/user.services";
 
@@ -59,10 +59,14 @@ function AudioPlayer(props) {
 
   //FUNCIONES QUE QUERAMOS PONER
 
-  const handlePlayPause = () => {
+  const handlePlayPause = async () => {
     setPlay(!playing);
+    if(playing){
+      await getSongPlaysService(props.eachSong._id)
+    }
 
     wavesurfer.current.playPause();
+
   };
   
 
@@ -125,8 +129,9 @@ function AudioPlayer(props) {
           defaultValue={volume}
         />
         <div className="owner">
-              <span id="current">Precio: {props.eachSong.plays}</span>
-              {isLogin && <Button onClick={handleAddCart}>Buy</Button>}
+              <span id="current">{props.eachSong.plays} Plays</span>
+            
+              {isLogin && <Button onClick={handleAddCart}>Likes</Button>}
               
             </div>
             <div className="owner">

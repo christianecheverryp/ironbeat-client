@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { getListService } from '../services/playlist.services'
 
 function PlayListView() {
@@ -35,11 +35,19 @@ function PlayListView() {
     {allPlaylist.map((eachList) => {
       return (
         <div> 
+          <Link to={`/${eachList._id}/playlist`}>
+
+            <div>
+              <h2>{eachList.name}</h2>
+              <p>{eachList.list.length} Songs</p>
+            </div>
         
-        <h2>{eachList.name}</h2>
-        <p>{eachList.list.length} Songs</p>
+          </Link>
+          
+        
         
         </div>
+        
       )
     })}
     

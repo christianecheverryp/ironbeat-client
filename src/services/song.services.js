@@ -23,10 +23,14 @@ const getSongDetailsService = (id) => {
 const getAllMusicService = () => {
     return service.get("/")
 }
+const getSongPlaysService = (id) => {
+    return service.patch("/plays", {id})
+}
 
 
 export {
     addSongService,
     getSongDetailsService,
-    getAllMusicService
+    getAllMusicService,
+    getSongPlaysService
 }
