@@ -23,9 +23,13 @@ const createNewListService = (id, name) =>{
 
 }
 
-const updateNewList = (idSong, title) =>{
-    return service.patch(`/${idSong}/old`, title )
+const updateNewList = (idSong, playlistId) =>{
+    return service.patch(`/${idSong}/old`, {playlistId} )
 
+}
+
+const getSingleListService = (id) => {
+    return service.get(`/${id}/playlist`)
 }
 
 
@@ -34,7 +38,8 @@ const updateNewList = (idSong, title) =>{
 export{
     updateNewList,
     createNewListService,
-    getListService
+    getListService,
+    getSingleListService
 
 
 }

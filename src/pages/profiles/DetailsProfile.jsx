@@ -14,7 +14,7 @@ function DetailsProfile(props) {
   useEffect(() => {
     getProfile();
     
-  }, [id]);
+  }, []);
 
   const getProfile = async () => {
     try {
@@ -24,7 +24,7 @@ function DetailsProfile(props) {
       }
       
       const followArray = follows.filter((eachFollow) => {
-        return eachFollow.follows.includes(id)
+        return eachFollow._id.includes(id)
         })
         
        
@@ -53,7 +53,7 @@ function DetailsProfile(props) {
 
   const handleFollow = async () => {
     try {
-      followService(otherProfile._id);
+      await followService(otherProfile._id);
       setFollow(!follow);
 
       getFollowers();
@@ -79,6 +79,7 @@ function DetailsProfile(props) {
   }
 
   
+
 
 
   if (!otherProfile) {

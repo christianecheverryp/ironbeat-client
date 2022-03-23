@@ -18,6 +18,7 @@ import PlayListRender from './components/PlayListRender';
 import AddToPlaylist from './pages/AddToPlaylist';
 import { getAllFollows } from './services/user.services'
 import ShoppingCart from './pages/ShoppingCart';
+import PlayListView from './components/PlayListView';
 
 
 function App() {
@@ -25,7 +26,7 @@ function App() {
   const [ isLogin, setIsLogin ] = useState(false)
   const [ logUserId, setLogUserId ] = useState(null)
   const [ fetchingUser, setFetchingUser ] = useState(true)
-  const [ follows, setFollows ] = useState([])
+  const [ follows, setFollows ] = useState(null)
 
 
   const navigate = useNavigate()
@@ -53,11 +54,8 @@ function App() {
     try{
      const response = await getAllFollows()
      setFollows(response.data)
+
      
-     if(!follows){
-      return <div>...loading</div>
-    }
-  
     }catch(err) {
       navigate("/error")
     }
@@ -67,6 +65,10 @@ function App() {
     <h3>...Loading</h3>
   }
 
+/* if(!follows){
+      return <div>...loading</div>
+    } */
+
   return (
     <div className="App">
 
@@ -75,7 +77,7 @@ function App() {
 <div className='container'>
 
 <div className='follow-view'>
-{isLogin && <PlayListRender/> }
+{isLogin && <PlayListView/> }
     </div>
  
     
@@ -90,6 +92,7 @@ function App() {
       <Route path='/song/:id/details' element={ <SongDetails isLogin={isLogin} /> } />
 
       <Route path='/:id/add-list' element={ <AddToPlaylist/>}/>
+      <Route path='/:id/playlist' element={ <PlayListRender/>} />
       
       <Route path="/shopping-cart" element={<ShoppingCart/>}/>
 
@@ -102,6 +105,8 @@ function App() {
       <Route path='/error' element={ <Error /> } />
       <Route path='*' element={ <NotFound /> } />
       <Route path='/followers' element={<FollowView/>}/>
+
+
 
       
       

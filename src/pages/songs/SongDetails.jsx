@@ -56,13 +56,6 @@ function SongDetails(props) {
     <div className='song-details'>
     
     <h2>This is your song!</h2>
-
-    <p>{songDetail.title}</p>
-    {/* <img src={songDetail.imgSong} alt="Img-song" width={100} /> */}
-    <p>Price: {songDetail.price} €</p>
-
-    <p>Audio: </p>
-    {/* <p>Owner: {songDetail.owner.username}</p> */}
     
 
     

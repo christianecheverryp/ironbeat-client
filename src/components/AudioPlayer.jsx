@@ -125,7 +125,7 @@ function AudioPlayer(props) {
           defaultValue={volume}
         />
         <div className="owner">
-              <span id="current">Precio: {props.eachSong.price}</span>
+              <span id="current">Precio: {props.eachSong.plays}</span>
               {isLogin && <Button onClick={handleAddCart}>Buy</Button>}
               
             </div>
