@@ -76,7 +76,7 @@ function App() {
 
 <div className='container'>
 
-<div className='follow-view'>
+<div className='container-playlist follow-view'>
 {isLogin && <PlayListView/> }
     </div>
  
@@ -114,7 +114,7 @@ function App() {
     </Routes>
     </div>
     <div className='follow-view'>
-{isLogin && <FollowView follows={follows}/> }
+{isLogin && <FollowView className="container-follows" follows={follows}/> }
     </div>
 
 

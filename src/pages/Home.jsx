@@ -33,7 +33,7 @@ function Home(props) {
 
 
   return (
-    <div>
+    <div className='flex-column align-center'>
 
       <h1>HOME</h1>
 
