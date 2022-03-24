@@ -19,6 +19,7 @@ import AddToPlaylist from './pages/AddToPlaylist';
 import { getAllFollows } from './services/user.services'
 import ShoppingCart from './pages/ShoppingCart';
 import PlayListView from './components/PlayListView';
+import TemporaryDrawer from './components/TemporaryDrawer';
 
 
 function App() {
@@ -72,13 +73,15 @@ function App() {
   return (
     <div className="App">
 
-    <NavBar setIsLogin={setIsLogin} isLogin={isLogin}/>
+      <NavBar setIsLogin={setIsLogin} isLogin={isLogin}/>
 
-<div className='container'>
+    <div className='container'>
 
-<div className='container-playlist follow-view'>
-{isLogin && <PlayListView/> }
+    <div className='container-playlist '>
+      {isLogin && <TemporaryDrawer/> }
     </div>
+
+    
  
     
     <div>
@@ -113,7 +116,7 @@ function App() {
 
     </Routes>
     </div>
-    <div className='follow-view'>
+    <div className='follow-view'> {/* quitar la clase */}
 {isLogin && <FollowView className="container-follows" follows={follows}/> }
     </div>
 

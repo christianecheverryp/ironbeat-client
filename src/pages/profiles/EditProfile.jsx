@@ -6,12 +6,13 @@ import { uploadImageService } from "../../services/upload.services"
 import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
-import { Avatar, Button, Grid, Input } from '@mui/material';
+import { Avatar, Button, Grid, IconButton, Input } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
 
 import Typography from '@mui/material/Typography';
 import ButtonBase from '@mui/material/ButtonBase';
+import { PhotoCamera } from '@material-ui/icons';
 
 
 
@@ -92,8 +93,12 @@ const Input = styled('input')({
 
 
 
-
-
+const Img = styled('img')({
+  margin: 'auto',
+  display: 'block',
+  maxWidth: '100%',
+  maxHeight: '100%',
+});
 
 
 
@@ -166,9 +171,9 @@ const Input = styled('input')({
     </Grid> */
     <Paper
       sx={{
-        p: 2,
+        p: 10,
         margin: 'auto',
-        maxWidth: 500,
+        maxWidth: 600,
         flexGrow: 1,
         backgroundColor: (theme) =>
           theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -176,36 +181,50 @@ const Input = styled('input')({
     >
 
 
-<Grid container spacing={2}>
+<Grid container  columnSpacing={3} rowSpacing={5}>
         <Grid item>
-          <ButtonBase sx={{ width: 128, height: 128 }}>
-            {/* <Img alt="complex" src="/static/images/grid/complex.jpg" /> */}
-          </ButtonBase>
+        
+        <Avatar src={imgProfile} 
+              sx={{ width: 200, height: 200 }}
+            />
+
+          <label htmlFor="icon-button-file">
+            <Input accept="image/*" id="icon-button-file" multiple type="file" onChange={(e) => handleFileUpload(e)}/>
+              <IconButton color="primary" aria-label="upload picture" component="span">
+                <PhotoCamera />
+              </IconButton>
+          </label>
+
         </Grid>
+
+
         <Grid item xs={12} sm container>
           <Grid item xs container direction="column" spacing={2}>
-            <Grid item xs>
-              <Typography gutterBottom variant="subtitle1" component="div">
-                Standard license
-              </Typography>
-              <Typography variant="body2" gutterBottom>
-                Full resolution 1920x1080 • JPEG
-              </Typography>
-              <Typography variant="body2" color="text.secondary">
-                ID: 1030114
-              </Typography>
+            <Grid item xs >
+              <TextField id="outlined-required" label="Username"
+              value={username} onChange={(e) => setUsername(e.target.value)}
+              />  
+              </Grid>
+              <Grid item xs spacing={2}>
+               <TextField 
+              id="outlined-multiline-static"
+              label="Bio"
+              multiline
+              rows={4}
+              
+              value={bio}
+              onChange={(e) => setBio(e.target.value)}
+              />   
             </Grid>
-            <Grid item>
-              <Typography sx={{ cursor: 'pointer' }} variant="body2">
-                Remove
-              </Typography>
+
+
+            <Grid item >
+              <Button onClick={(e) => handleSubmit(e)} variant="outlined" size="medium">
+                Update Profile
+              </Button>
             </Grid>
           </Grid>
-          <Grid item>
-            <Typography variant="subtitle1" component="div">
-              $19.00
-            </Typography>
-          </Grid>
+
         </Grid>
       </Grid>
     </Paper>
