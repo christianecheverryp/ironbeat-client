@@ -24,6 +24,7 @@ import PersonIcon from '@mui/icons-material/Person';
 import Logout from '@mui/icons-material/Logout';
 import HomeIcon from '@mui/icons-material/Home';
 import { getMyProfileService } from "../services/user.services";
+import HeadphonesIcon from '@mui/icons-material/Headphones';
 
 
 
@@ -190,6 +191,17 @@ function NavBar(props) {
             >
               {/* LOGO */}
             </Typography>
+            <Box className="container-follows" sx={{ flexGrow: 1, display: "flex" }}>
+             
+             {/* <Image className="img-size" src="../images/headphone.jpg" /> */}
+             <IconButton component={RouterLink}
+                      to="/" size="large" color="inherit"  >
+
+                 <HeadphonesIcon /> 
+            </IconButton>
+            </Box> 
+
+           
 
             <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
 
@@ -197,15 +209,14 @@ function NavBar(props) {
               <HomeIcon fontSize="large" />
             </NavLink> */}
               {/* AQUI IBAN LOS  LINKS ANTES PODRIAMOS PONER EL LOGO AQUI */}
-              <IconButton component={RouterLink}
-                      to="/" size="large" color="inherit">
-                <HomeIcon />
-            </IconButton>
+              
 
-
+ <img className="photo-navbar" src="../images/headphone.jpg" alt="" width={50}/>
 
         
             </Box>
+
+           
 
 
 

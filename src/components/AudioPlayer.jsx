@@ -5,6 +5,11 @@ import { getSongDetailsService, getSongPlaysService } from "../services/song.ser
 import { useNavigate } from 'react-router-dom'
 import { Button } from "@mui/material";
 import { shoppingCartService } from "../services/user.services";
+import PauseIcon from '@mui/icons-material/Pause';
+import PlayArrowIcon from '@mui/icons-material/PlayArrow';
+import PlaylistAddIcon from '@mui/icons-material/PlaylistAdd';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 
 const formWaveSurferOptions = (ref) => ({
   container: ref,
@@ -26,8 +31,9 @@ function AudioPlayer(props) {
   const wavesurfer = useRef(null);
   const [playing, setPlay] = useState(false); //AQUI ES PARA DAR EL PLAY
   const [volume, setVolume] = useState(0.5); //ESE ES EL VOLUMEN
-  const { isLogin } = props;
+  const { isLogin, logUserId } = props;
   const navigate = useNavigate()
+  const [like, setLike] = useState(false)
   
 
 
@@ -87,6 +93,21 @@ function AudioPlayer(props) {
   const handleAddCart = async() => {
     try{
       await shoppingCartService(props.eachSong._id)
+      setLike(!like)
+      
+
+
+      // const followArray = logUserId.shoppingList.filter((eachLike) => {
+      //   return eachLike === props.eachSong._id
+      //   })
+        
+
+      //   if (followArray.length < 1){
+      //     setLike(false)
+      //   } else {
+      //     setLike(true)
+      //   }
+      
 
     }catch(err){
       navigate("/error")
@@ -97,25 +118,40 @@ function AudioPlayer(props) {
 
   return (
     <div className="player">
-      <div className="thumb">
-        <img src={props.eachSong.imgSong} alt="" />
-      </div>
+     <div className="control">
+            <i onClick={handlePlayPause}>{!playing ?  <PlayArrowIcon/> : <PauseIcon/> }</i>
+          </div>
+      
 
       <div className="info">
-        <div className="detail">
-          <div className="title">
-            <Link to={`/song/${props.eachSong._id}/details`}>{props.eachSong.title}</Link>     {/* PREGUNTAR SI HAY ALGUNA FORMA BONITA DE HACERLO */}
-            <div className="owner">
-              <span id="current"><Link to={`/profile/${props.eachSong.owner._id}/details`}>{props.eachSong.owner.username}</Link></span>
+      <div className="name-photo-container">
+
+  <div className="title">
+          
+        <img className="photo-song" src={props.eachSong.imgSong} alt="" width={50} />
+      
+          <div className="owner ">
+              <span id="current"><Link className="owner-name sm-width" to={`/profile/${props.eachSong.owner._id}/details`}>@{props.eachSong.owner.username}</Link></span>
+              
             </div>
+            
+            <div className="title-song sm-width" >
+            <Link className="title-name" to={`/song/${props.eachSong._id}/details`}>{props.eachSong.title}</Link>     {/* PREGUNTAR SI HAY ALGUNA FORMA BONITA DE HACERLO */}
+            </div>
+            
           </div>
 
-          <div className="control">
-            <i onClick={handlePlayPause}>{!playing ? "Play" : "Pause"}</i>
-          </div>
+      </div>
+      
+        <div className="detail">
+        
+        
+          
+
+         
         </div>
 
-        <div id="waveform" ref={waveformRef}></div>
+        <div id="waveform" className="wave-size" ref={waveformRef}></div>
         <input
           type="range"
           id="volume"
@@ -128,17 +164,33 @@ function AudioPlayer(props) {
           onChange={onVolumeChange}
           defaultValue={volume}
         />
-        <div className="owner">
-              <span id="current">{props.eachSong.plays} Plays</span>
-            
-              {isLogin && <Button onClick={handleAddCart}>Likes</Button>}
-              
-            </div>
-            <div className="owner">
+
+
+        <div className="down-container flex-row">
+
+        <div className="flex-row">
+<div className="owner light-letters">
              
-              {isLogin && <Button  onClick={handleAddList}>Add to Playlist</Button>}
+              {isLogin && <Button style={{
+                backgroundColor: "#24724b",
+                fontSize: "8px",
+              }} onClick={handleAddList}><PlaylistAddIcon/></Button>}
               
             </div>
+            <div>{isLogin && <Button onClick={handleAddCart}>{!like ? <FavoriteIcon/> : <FavoriteBorderIcon/>}</Button>}</div>
+
+        </div>
+
+
+           
+            
+
+            <div className="owner">
+              <span id="current">{props.eachSong.plays} Plays</span>
+  
+            </div>
+        </div>
+       
       </div>
     </div>
   );
