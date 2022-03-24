@@ -20,6 +20,7 @@ import { getAllFollows } from './services/user.services'
 import ShoppingCart from './pages/ShoppingCart';
 import PlayListView from './components/PlayListView';
 import TemporaryDrawer from './components/TemporaryDrawer';
+import TemporaryDrawerRight from './components/TemporaryDrawerRight';
 
 
 function App() {
@@ -116,8 +117,8 @@ function App() {
 
     </Routes>
     </div>
-    <div className='follow-view'> {/* quitar la clase */}
-{isLogin && <FollowView className="container-follows" follows={follows}/> }
+    <div > {/* quitar la clase */}
+{isLogin && <TemporaryDrawerRight className="container-follows" follows={follows}/> }
     </div>
 
 

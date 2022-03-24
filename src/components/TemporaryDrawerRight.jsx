@@ -5,20 +5,25 @@ import Button from '@mui/material/Button';
 import List from '@mui/material/List';
 import Divider from '@mui/material/Divider';
 import ListItem from '@mui/material/ListItem';
+import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
+import InboxIcon from '@mui/icons-material/MoveToInbox';
+import MailIcon from '@mui/icons-material/Mail';
 import MusicNoteIcon from '@mui/icons-material/MusicNote';
 import QueueMusicIcon from '@mui/icons-material/QueueMusic';
 import { getListService } from '../services/playlist.services';
-import { Navigate, Link as RouterLink, Link } from 'react-router-dom';
-import { Avatar, ListItemAvatar, ListItemButton, Typography } from '@mui/material';
+import { Link, Navigate } from 'react-router-dom';
+import { Avatar, IconButton, ListItemAvatar, Typography } from '@mui/material';
+import PeopleIcon from '@mui/icons-material/People';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
+function TemporaryDrawerRight(props) {
 
-
-export default function TemporaryDrawer() {
     const [ allPlaylist, setAllPlaylist ] = useState(null)
     const [state, setState] = useState({
-        left: false,
+        right: false,
     });
+    const {follows, setFollows} = props
 
   const toggleDrawer = (anchor, open) => (event) => {
     if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
@@ -30,24 +35,7 @@ export default function TemporaryDrawer() {
 
 
   React.useEffect(() => {
-    getRenderPlayList()
   }, [])
-
-
-
-  const getRenderPlayList = async () =>{
-    try{
-
-      const response = await getListService()
-      setAllPlaylist(response.data)
-    }catch(err){
-      Navigate("/error")
-    }
-  }
-
-  if(!allPlaylist){
-    return <p>...Loading</p>
-  }
 
   const list = (anchor) => (
     <Box
@@ -59,39 +47,27 @@ export default function TemporaryDrawer() {
 
     <List >
         <Typography variant="h6" gutterBottom>
-            PlayList
+            Follows
         </Typography>
-        {allPlaylist.map((eachList) => (
-          <Link to={`/${eachList._id}/playlist`} underline="none">
-          <ListItem button key={eachList}>
+        {follows.map((eachFollow) => (
+            <Link to={`/profile/${eachFollow._id}/details`}>
+                
+          <ListItem button key={eachFollow}>
             {/* <ListItemIcon>
               {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
             </ListItemIcon> */}
 
             <ListItemAvatar>
-          <Avatar>
-            <MusicNoteIcon />
+          <Avatar src={eachFollow.imgProfile}>
+             <AccountCircleIcon /> 
           </Avatar>
         </ListItemAvatar>
-            
+            <ListItemText underline="none" primary={eachFollow.username} />
 
 
-            
-            
+          </ListItem>
+            </Link>
 
-                <ListItemText underline="none"  primary={eachList.name} secondary={`${eachList.list.length} Songs`}/>
-
-
-                
-
-         
-        
-
-            
-
-
-          </ListItem>   
-          </Link>
         ))}
     </List>
 
@@ -111,13 +87,14 @@ export default function TemporaryDrawer() {
     </Box>
   );
 
+
   return (
     <div>
-      {['left'].map((anchor) => (
+      {['right'].map((anchor) => (
         <React.Fragment key={anchor}>
         
             
-            <Button onClick={toggleDrawer(anchor, true)}><QueueMusicIcon fontSize='large'/></Button>
+            <Button onClick={toggleDrawer(anchor, true)}><PeopleIcon fontSize='large'/></Button>
         
           
           <Drawer
@@ -130,6 +107,7 @@ export default function TemporaryDrawer() {
         </React.Fragment>
       ))}
     </div>
-  );
+  )
 }
 
+export default TemporaryDrawerRight

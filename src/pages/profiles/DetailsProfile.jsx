@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { followService, getOtherProfile } from "../../services/user.services";
-import { Button } from "@mui/material";
+import { Avatar, Button, Grid, Paper, Typography } from "@mui/material";
 import "../../css/details_profile.css";
+import { Box } from "@mui/system";
 
 function DetailsProfile(props) {
   const { isLogin, logUserId, getFollowers, follows } = props;
@@ -87,7 +88,7 @@ function DetailsProfile(props) {
   }
 // "container-profile-details"
   return (
-    <div >
+/*     <div >
             <h3>Ventana del perfil de {otherProfile.username}</h3>
 
       <img src={otherProfile.imgProfile} alt="Profile-Picture" width={100} />
@@ -98,39 +99,83 @@ function DetailsProfile(props) {
         <Button onClick={handleFollow}>{follow ? "UnFollow" : "Follow"}</Button>
       )}
 
-      {/* <div class="card-profile-details">
-        <div class="img-avatar">
-          <img src={otherProfile.imgProfile} alt="Profile-Picture" />
-        </div>
-        <div class="card-text">
-          <div class="portada">
-            <img src={otherProfile.imgProfile} alt="Profile-Picture" />
-          </div>
-          <div class="title-total">
-            <div class="title-profile-details">Inventor</div>
-            <h2>{otherProfile.username}</h2>
 
-            <div class="desc">
-              Se le conoce sobre todo por sus numerosas invenciones en el campo
-              del electromagnetismo, desarrolladas a finales del siglo XIX y
-              principios del siglo XX.
-            </div>
+    </div> */
+<Box sx={{  flexGrow: 1}}>
 
-            <div class="actions-profile-details">
-              <button>
-                <i class="fas fa-fire"></i>
-              </button>
-              <button>
-                <i class="fas fa-envelope"></i>
-              </button>
-              <button>
-                <i class="fas fa-user-friends"></i>
-              </button>
-            </div>
-          </div>
-        </div>
-      </div> */}
-    </div>
+
+    <Paper
+    sx={{
+      p: 10,
+      margin: 'auto',
+      maxWidth: 500,
+      flexGrow: 1,
+      backgroundColor: (theme) =>
+        theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
+    }}
+  >
+
+
+    <Grid  container spacing={3}  columnSpacing={7} rowSpacing={5}>
+    
+          <Grid item>
+          
+          <Avatar src={otherProfile.imgProfile} 
+                sx={{ width: 200, height: 200 }}
+              />
+
+          </Grid>
+
+
+          <Grid item xs={12} sm container>
+            <Grid item xs container direction="column" spacing={2}>
+              <Grid item xs >
+                <Typography variant="h5" gutterBottom component="div">
+                {otherProfile.username}
+                </Typography>
+
+                </Grid>
+
+                <Grid item xs spacing={2}>
+                  <Typography variant="body1" gutterBottom>
+                  {otherProfile.bio}
+                  </Typography>
+                </Grid>
+
+
+              <Grid item >
+                {isLogin && (
+                  <Button onClick={handleFollow}>{follow ? "UnFollow" : "Follow"}</Button>
+                )}
+
+{/*                 <Button href="/profile/edit" variant="outlined" size="medium">
+                  Edit
+                </Button> */}
+              </Grid>
+            </Grid>
+
+          </Grid>
+        </Grid>
+  </Paper>
+
+  <Paper
+   sx={{
+      p: 10,
+      margin: 'auto',
+      maxWidth: 500,
+      flexGrow: 1,
+      backgroundColor: (theme) =>
+        theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
+    }}>
+
+    
+
+
+
+
+  </Paper>
+
+</Box>
   );
 }
 
