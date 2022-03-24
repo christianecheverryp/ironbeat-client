@@ -19,6 +19,7 @@ import AddToPlaylist from './pages/AddToPlaylist';
 import { getAllFollows } from './services/user.services'
 import TemporaryDrawer from './components/TemporaryDrawer';
 import Favorites from './pages/Favorites';
+import TemporaryDrawerRight from './components/TemporaryDrawerRight';
 
 
 function App() {
@@ -115,8 +116,8 @@ function App() {
 
     </Routes>
     </div>
-    <div className='follow-view'> {/* quitar la clase */}
-{isLogin && <FollowView className="container-follows" follows={follows}/> }
+    <div > {/* quitar la clase */}
+{isLogin && <TemporaryDrawerRight className="container-follows" follows={follows}/> }
     </div>
 
 
