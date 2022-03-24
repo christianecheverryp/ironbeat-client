@@ -1,11 +1,11 @@
 
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { getShoppingListService } from '../services/user.services'
+import { getFavoritesService } from '../services/user.services'
 
-function ShoppingCart() {
+function Favorites() {
 
-    const [shoppingList, setShoppingList] = useState(null)
+    const [favoritesList, setFavoritesList] = useState(null)
     
     const navigate = useNavigate()
     
@@ -18,16 +18,16 @@ function ShoppingCart() {
     const getShoppingList = async () => {
         try{
 
-           const response = await getShoppingListService()
+           const response = await getFavoritesService()
            console.log(response.data)
-           setShoppingList(response.data)
+           setFavoritesList(response.data)
         }catch(err){
             navigate("/error")
         }
     }
 
 
-    if(!shoppingList){
+    if(!favoritesList){
         return <div>...loading</div>
     }
 
@@ -39,7 +39,7 @@ function ShoppingCart() {
     <h3>AQUI VAN LAS COMPRAS</h3>
 
 
-    {shoppingList.shoppingList.map((eachShop)=>{
+    {favoritesList.shoppingList.map((eachShop)=>{
         return <p>{eachShop.title}</p>
     })}
 
@@ -62,4 +62,4 @@ function ShoppingCart() {
   )
 }
 
-export default ShoppingCart
+export default Favorites

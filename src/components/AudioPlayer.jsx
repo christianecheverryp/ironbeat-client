@@ -4,7 +4,7 @@ import WaveSurfer from "wavesurfer.js";
 import { getSongDetailsService, getSongPlaysService } from "../services/song.services";
 import { useNavigate } from 'react-router-dom'
 import { Button } from "@mui/material";
-import { shoppingCartService } from "../services/user.services";
+import { putFavoritesService } from "../services/user.services";
 import PauseIcon from '@mui/icons-material/Pause';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import PlaylistAddIcon from '@mui/icons-material/PlaylistAdd';
@@ -92,7 +92,7 @@ function AudioPlayer(props) {
 
   const handleAddCart = async() => {
     try{
-      await shoppingCartService(props.eachSong._id)
+      await putFavoritesService(props.eachSong._id)
       setLike(!like)
       
 

@@ -36,12 +36,16 @@ const getAllFollows = () => {
     return service.get("/followers")
 }
 
-const shoppingCartService = (id) => {
-    return service.patch(`/${id}/cart`)
+const putFavoritesService = (id) => {
+    return service.patch(`/${id}/favorites`)
 }
 
-const getShoppingListService = () => {
-    return service.get("/my-cart")
+const getFavoritesService = () => {
+    return service.get("/favorites")
+}
+
+const getFavoritesOtherService = (id) => {
+    return service.get(`/${id}/favorites`)
 }
 
 
@@ -53,7 +57,9 @@ export {
     getOtherProfile,
     followService,
     getAllFollows,
-    shoppingCartService,
-    getShoppingListService
+    putFavoritesService,
+    getFavoritesService,
+    getFavoritesOtherService
+    
     
 }

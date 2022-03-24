@@ -28,9 +28,26 @@ const getSongPlaysService = (id) => {
 }
 
 
+const getMySongsService = () => {
+    return service.get("/my-songs")
+}
+
+const getOwnerSongsService = (id) => {
+    return service.get(`/${id}/songs-list`)
+}
+
+const getRankingPlaysService = () => {
+    return service.get("/ranking-plays")
+}
+
+
 export {
     addSongService,
     getSongDetailsService,
     getAllMusicService,
-    getSongPlaysService
+    getSongPlaysService,
+    getMySongsService,
+    getOwnerSongsService,
+    getRankingPlaysService
+
 }

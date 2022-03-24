@@ -17,9 +17,8 @@ import FollowView from './components/FollowView';
 import PlayListRender from './components/PlayListRender';
 import AddToPlaylist from './pages/AddToPlaylist';
 import { getAllFollows } from './services/user.services'
-import ShoppingCart from './pages/ShoppingCart';
-import PlayListView from './components/PlayListView';
 import TemporaryDrawer from './components/TemporaryDrawer';
+import Favorites from './pages/Favorites';
 
 
 function App() {
@@ -97,7 +96,7 @@ function App() {
       <Route path='/:id/add-list' element={ <AddToPlaylist/>}/>
       <Route path='/:id/playlist' element={ <PlayListRender/>} />
       
-      <Route path="/shopping-cart" element={<ShoppingCart/>}/>
+      <Route path="/favorites" element={<Favorites/>}/>
 
 
 

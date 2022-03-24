@@ -33,7 +33,7 @@ function Home(props) {
     // si no hay canciones en response.data, no activas el settimeout
     setTimeout(() => {
       setCanFetchSongs(true)
-    }, 2000)
+    }, 3000)
     setIsNext(true)
 
 
