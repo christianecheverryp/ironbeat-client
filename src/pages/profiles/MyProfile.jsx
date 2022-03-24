@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { getMyProfileService } from '../../services/user.services'
 import "../../css/details_profile.css"
+import { Avatar, Button, Grid, IconButton, Input, Paper, TextField, Typography } from '@mui/material'
+import { Label, PhotoCamera } from '@material-ui/icons'
 
 function MyProfile() {
 
@@ -36,41 +38,62 @@ function MyProfile() {
   } 
 
   return (
-    <div id="container-profile-details">
-
-      {/* <h3>Ventana de mi perfil</h3>
-
-        <img src={myProfile.imgProfile} alt="Profile-Picture" width={100}/>
-        <p>{myProfile.username}</p>
-        <p>{myProfile.bio}</p>
+    
 
 
 
-        <Link to="/profile/edit"><button>Edit</button></Link> */}
+        <Paper
+      sx={{
+        p: 10,
+        margin: 'auto',
+        maxWidth: 600,
+        flexGrow: 1,
+        backgroundColor: (theme) =>
+          theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
+      }}
+    >
 
 
-        <div class="content">
-          <div class="card">
-            <div class="firstinfo"><img src={myProfile.imgProfile}/>
-              <div class="profileinfo">
-                <h1>{myProfile.username}</h1>
-                <h3>Python Ninja</h3>
-                <p class="bio">{myProfile.bio}</p>
-              <Link to="/profile/edit"><button>Edit</button></Link>
-              </div>
-            </div>
-          </div>
-          <div class="badgescard"> 
-            <span class="devicons devicons-django"></span>
-            <span class="devicons devicons-python"> </span>
-            <span class="devicons devicons-codepen"></span>
-          </div>
-        </div>
+<Grid container  columnSpacing={3} rowSpacing={5}>
+        <Grid item>
+        
+        <Avatar src={myProfile.imgProfile} 
+              sx={{ width: 200, height: 200 }}
+            />
+
+        </Grid>
+
+
+        <Grid item xs={12} sm container>
+          <Grid item xs container direction="column" spacing={2}>
+            <Grid item xs >
+              <Typography variant="h5" gutterBottom component="div">
+              {myProfile.username}
+              </Typography>
+
+              </Grid>
+
+              <Grid item xs spacing={2}>
+                <Typography variant="body1" gutterBottom>
+                {myProfile.bio}
+                </Typography>
+            </Grid>
+
+
+            <Grid item >
+              <Button href="/profile/edit" variant="outlined" size="medium">
+                Edit
+              </Button>
+            </Grid>
+          </Grid>
+
+        </Grid>
+      </Grid>
+    </Paper>
 
 
 
-
-    </div>
+    
   )
 }
 

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { getListService } from '../services/playlist.services'
 
-function PlayListView() {
+function PlayListView(props) {
 
   const [ allPlaylist, setAllPlaylist ] = useState(null)
   const navigate = useNavigate()
