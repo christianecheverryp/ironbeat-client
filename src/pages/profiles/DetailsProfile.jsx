@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { followService, getOtherProfile } from "../../services/user.services";
-import { Avatar, Button, Grid, Paper, Typography } from "@mui/material";
+import { Avatar, Button, Grid, List, ListItem, ListItemAvatar, ListItemButton, ListItemText, Paper, Stack, Typography } from "@mui/material";
 import "../../css/details_profile.css";
 import { Box } from "@mui/system";
+import MusicIcon from '@mui/icons-material/QueueMusic';
 
 function DetailsProfile(props) {
   const { isLogin, logUserId, getFollowers, follows } = props;
@@ -45,6 +46,7 @@ function DetailsProfile(props) {
       // cambiarian SetFollow a true o false
 
       setOtherProfile(response.data);
+      
     } catch (err) {
       if (err.response.status === 401) {
         navigate("/");
@@ -66,7 +68,7 @@ function DetailsProfile(props) {
     }
   };
 
-
+  const getFavouriteSongs = async () => {}
 
 
 
@@ -101,7 +103,9 @@ function DetailsProfile(props) {
 
 
     </div> */
-<Box sx={{  flexGrow: 1}}>
+<Stack direction={{ xs: 'column', sm: 'row' }}
+  spacing={{ xs: 1, sm: 2, md: 4 }}
+>
 
 
     <Paper
@@ -158,24 +162,73 @@ function DetailsProfile(props) {
         </Grid>
   </Paper>
 
-  <Paper
-   sx={{
-      p: 10,
-      margin: 'auto',
-      maxWidth: 500,
-      flexGrow: 1,
-      backgroundColor: (theme) =>
-        theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
-    }}>
+  
 
-    
+<Grid container  columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
+
+        <Grid item xs={6}>
+          <Paper
+            sx={{
+              p: 10,
+              margin: 'auto',
+              maxWidth: 500,
+              flexGrow: 1,
+              backgroundColor: (theme) =>
+                theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
+            }}>
+
+              
+
+              {/* <List >
+                <Typography variant="h6" gutterBottom component="div">
+                  My Favourites Songs
+                </Typography>
+                  {allPlaylist.map((eachList) => (
+                    <Link to={`/${eachList._id}/playlist`} underline="none">
+                    <ListItem button key={eachList}>
+
+                      <ListItemAvatar>
+                    <Avatar>
+                      <MusicIcon />
+                    </Avatar>
+                  </ListItemAvatar>
+              
+
+                  <ListItemText underline="none"  primary={eachList.name} secondary={`${eachList.list.length} Songs`}/>
+
+                      </ListItem>   
+                      </Link>
+                    ))}
+              </List>
+ */}
+
+                      
+                      
+                      
+            
+            
+            
+            
+            </Paper>
+        </Grid>
 
 
+        <Grid item xs={6}>
 
+        <Paper 
+        sx={{
+          p: 10,
+          margin: 'auto',
+          maxWidth: 500,
+          flexGrow: 1,
+          backgroundColor: (theme) =>
+            theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
+        }}>2</Paper>
+        </Grid>
+        
+      </Grid>
 
-  </Paper>
-
-</Box>
+      </Stack>
   );
 }
 

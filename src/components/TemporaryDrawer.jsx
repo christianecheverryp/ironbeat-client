@@ -75,20 +75,7 @@ export default function TemporaryDrawer() {
         </ListItemAvatar>
             
 
-
-            
-            
-
                 <ListItemText underline="none"  primary={eachList.name} secondary={`${eachList.list.length} Songs`}/>
-
-
-                
-
-         
-        
-
-            
-
 
           </ListItem>   
           </Link>
