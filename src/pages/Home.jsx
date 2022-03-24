@@ -10,7 +10,8 @@ function Home(props) {
   const {isLogin} = props
   // const [items, setItems] = useState([])
   const [isNext, setIsNext] = useState(false)
-  const [pageCount, setPageCount] = useState(1)
+  const [pageCount, setPageCount] = useState(0)
+  const [ canFetchSongs, setCanFetchSongs ] = useState(false)
   
   
 
@@ -26,15 +27,24 @@ function Home(props) {
 
 
   const getAllMusic = async() => {
-    const response = await getAllMusicService()
+
+    const response = await getAllMusicService(pageCount)
     setAllMusic([...allMusic, ...response.data])
+    // si no hay canciones en response.data, no activas el settimeout
+    setTimeout(() => {
+      setCanFetchSongs(true)
+    }, 2000)
     setIsNext(true)
 
 
   }
   function fetchMoreData() {
-    setPageCount(pageCount + 1);
-    getAllMusic();
+    if (canFetchSongs) {
+      setCanFetchSongs(false)
+      setPageCount(pageCount + 1);
+      getAllMusic();
+    }
+    
   }
 
  

@@ -6,6 +6,7 @@
   /* background-image: url("../public/background-sound.jpg"); */
   opacity: 0.91;
    background-color: rgba(135, 196, 250, 0.345) ;
+   min-height: 100vh;
   
   
   
@@ -209,7 +210,6 @@
 }
 
 .add-page{
-  height: 100vh;
   display: flex;
   flex-direction: row;
   justify-content:space-around;
@@ -287,4 +287,6 @@
  justify-content: space-between;
  margin-top: 30px;
 }
+
+
 

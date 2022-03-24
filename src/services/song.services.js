@@ -20,8 +20,8 @@ const getSongDetailsService = (id) => {
 }
 
 
-const getAllMusicService = () => {
-    return service.get("/")
+const getAllMusicService = (page) => {
+    return service.get(`/all-music/${page}`)
 }
 const getSongPlaysService = (id) => {
     return service.patch("/plays", {id})

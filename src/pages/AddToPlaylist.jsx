@@ -6,12 +6,19 @@ import {
   updateNewList,
 } from "../services/playlist.services";
 
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
+import Button from '@mui/material/Button';
+
 function AddToPlaylist(props) {
   const [name, setName] = useState("");
   const navigate = useNavigate();
   const [allPlaylist, setAllPlaylist] = useState(null);
   const { id } = useParams();
   const [listToAdd, setListToAdd] = useState("")
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
     getAllPlaylist();
@@ -32,6 +39,7 @@ function AddToPlaylist(props) {
     e.preventDefault();
     try {
       await createNewListService(id, { name });
+      // navigate("/")
     } catch (err) {
       navigate("/error");
     }
@@ -47,17 +55,27 @@ function AddToPlaylist(props) {
 
   }
 
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const handleOpen = () => {
+    setOpen(true);
+  };
+
 
 
 
 
   const handleOldList = async (e) => {
       e.preventDefault()
+      
 
     try {
         
 
       await updateNewList(id, listToAdd);
+      navigate("/")
     } catch (err) {
       navigate("/error");
     }
@@ -68,9 +86,9 @@ function AddToPlaylist(props) {
   }
 
   return (
-    <div>
-      <h3>Here we add to the playlist</h3>
-      <button>Nueva lista</button>
+    <div className="add-page flex-column">
+      <h3>Add the track to a playlist</h3>
+      <button>Create a new list</button>
       <form onSubmit={handleSubmit}>
         <label htmlFor="name">nombre de la lista:</label>
         <input
@@ -83,9 +101,56 @@ function AddToPlaylist(props) {
         <button>Crear</button>
       </form>
 
-      <h4>AQUI LISTAS ANTIGUAS</h4>
+ 
 
-      <form onSubmit={handleOldList}>
+
+
+
+
+
+
+
+
+
+
+
+
+      <Button sx={{ display: 'block', mt: 2 }} onClick={handleOpen}>
+        Choose
+      </Button>
+      <FormControl sx={{ m: 1, minWidth: 120 }}>
+
+      
+        <InputLabel htmlFor="list" id="demo-controlled-open-select-label">Playlist</InputLabel>
+        <Select
+          labelId="demo-controlled-open-select-label"
+          id="demo-controlled-open-select"
+          open={open}
+          onClose={handleClose}
+          onOpen={handleOpen}
+          value={listToAdd}
+          
+          name="list"
+          onChange={handleSelectPlaylist}
+        >
+          <MenuItem value="">
+            <em>None</em>
+          </MenuItem>
+          {allPlaylist.map((eachList) => {
+            return <MenuItem value={eachList._id}>{eachList.name}</MenuItem>
+          })}
+
+          
+          
+        </Select>
+<Button onClick={handleOldList}>add</Button>
+
+      </FormControl>
+      
+
+
+
+      {/* <form onSubmit={handleOldList}>
         <label htmlFor="list">Choose the playlist:</label>
 
         <select name="list" value={listToAdd} onChange={handleSelectPlaylist}>
@@ -96,7 +161,7 @@ function AddToPlaylist(props) {
           })}
         </select>
         <button>add</button>
-       </form> 
+       </form>  */}
     </div>
   );
 }

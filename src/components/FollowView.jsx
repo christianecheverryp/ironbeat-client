@@ -16,9 +16,9 @@ function FollowView(props) {
     
 
     
-    if(!follows){
-      return <div>...loading</div>
-    }
+    // if(!follows){
+    //   return <div>...loading</div>
+    // }
  
   return (
     <div>

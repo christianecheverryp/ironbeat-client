@@ -98,7 +98,7 @@ function AudioPlayer(props) {
 
 
       // const followArray = logUserId.shoppingList.filter((eachLike) => {
-      //   return eachLike === props.eachSong._id
+      //   return eachLike == props.eachSong._id
       //   })
         
 

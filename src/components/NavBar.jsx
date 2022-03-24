@@ -198,6 +198,7 @@ function NavBar(props) {
                       to="/" size="large" color="inherit"  >
 
                  <HeadphonesIcon /> 
+                 <Typography>Ironbeat</Typography>
             </IconButton>
             </Box> 
 

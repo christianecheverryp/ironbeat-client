@@ -26,7 +26,7 @@ function App() {
   const [ isLogin, setIsLogin ] = useState(false)
   const [ logUserId, setLogUserId ] = useState(null)
   const [ fetchingUser, setFetchingUser ] = useState(true)
-  const [ follows, setFollows ] = useState(null)
+  const [ follows, setFollows ] = useState([])
 
 
   const navigate = useNavigate()
