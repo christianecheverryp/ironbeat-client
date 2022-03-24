@@ -40,7 +40,7 @@ function NavBar(props) {
   const navigate = useNavigate();
 
   useEffect(()=> {
-    getProfile()
+    isLogin && getProfile()
   }, [])
  
   const getProfile = async() => {

@@ -39,7 +39,7 @@ function AddToPlaylist(props) {
     e.preventDefault();
     try {
       await createNewListService(id, { name });
-      // navigate("/")
+      navigate("/")
     } catch (err) {
       navigate("/error");
     }
