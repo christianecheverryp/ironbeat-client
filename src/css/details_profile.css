@@ -1,24 +1,24 @@
-@import 'https://fonts.googleapis.com/css?family=Open+Sans:300,400';
+@import "https://fonts.googleapis.com/css?family=Open+Sans:300,400";
 
 #container-profile-details {
-    font-family: "Open Sans", sans-serif;
+  font-family: "Open Sans", sans-serif;
 
-    width: 100vw;
-    height: 100vh;
-    background: #009688;
-    font-size: 16px;
-    overflow: hidden;
+  width: 100vw;
+  height: 100vh;
+  background: #009688;
+  font-size: 16px;
+  overflow: hidden;
 }
 
-
-.firstinfo, .badgescard,#container-profile-details  {
+.firstinfo,
+.badgescard,
+#container-profile-details {
   display: flex;
   justify-content: center;
-  
 }
 
-.content{
-    position: relative;
+.content {
+  position: relative;
   animation: animatop 0.9s cubic-bezier(0.425, 1.14, 0.47, 1.125) forwards;
 }
 
@@ -45,14 +45,15 @@
 .badgescard {
   padding: 10px 20px;
   border-radius: 3px;
-  background-color: #ECECEC;
+  background-color: #ececec;
   width: 480px;
   box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
   position: absolute;
   z-index: -1;
   left: 10px;
   bottom: 10px;
-  animation: animainfos 0.5s cubic-bezier(0.425, 1.04, 0.47, 1.105) 0.75s forwards;
+  animation: animainfos 0.5s cubic-bezier(0.425, 1.04, 0.47, 1.105) 0.75s
+    forwards;
 }
 .badgescard span {
   font-size: 1.6em;
@@ -83,7 +84,7 @@
 }
 .firstinfo .profileinfo p.bio {
   padding: 10px 0px;
-  color: #5A5A5A;
+  color: #5a5a5a;
   line-height: 1.2;
   font-style: initial;
 }

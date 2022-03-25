@@ -13,7 +13,6 @@ import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import ListItemIcon from "@mui/material/ListItemIcon";
 
-import SearchField from "./SearchField";
 // const pages = ['Products', 'Pricing', 'Blog'];
 import PasswordIcon from "@mui/icons-material/Password";
 import LoginIcon from "@mui/icons-material/Login";
@@ -76,11 +75,9 @@ function NavBar(props) {
 
   return (
     <div>
-      <AppBar  style={{ background:"#1b5e20" }} position="static">  {/***************************************** CAMBIAR COLOR DEL NAVBAR */}
-        <Container  maxWidth="xl">
-          <Toolbar  disableGutters>
-            <SearchField />
-
+      <AppBar style={{ background: "#2c3739" }} position="static">
+        <Container maxWidth="xl">
+          <Toolbar disableGutters>
             <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
               <IconButton
                 size="large"
@@ -89,45 +86,14 @@ function NavBar(props) {
                 aria-haspopup="true"
                 onClick={handleOpenNavMenu}
                 color="inherit"
-              >
-                {/* <MenuIcon /> */}
-              </IconButton>
-
-              {/* <Menu
-                id="menu-appbar"
-                anchorEl={anchorElNav}
-                anchorOrigin={{
-                  vertical: "bottom",
-                  horizontal: "left",
-                }}
-                keepMounted
-                transformOrigin={{
-                  vertical: "top",
-                  horizontal: "left",
-                }}
-                open={Boolean(anchorElNav)}
-                onClose={handleCloseNavMenu}
-                sx={{
-                  display: { xs: "block", md: "none" },
-                }}
-              >
-                {pages.map((page, index) => (
-                  <MenuItem key={page} onClick={handleCloseNavMenu}>
-                    {" "}
-                 
-                    <Typography textAlign="center">{page}</Typography>
-                  </MenuItem>
-                ))}
-              </Menu> */}
+              ></IconButton>
             </Box>
             <Typography
               variant="h6"
               noWrap
               component="div"
               sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}
-            >
-              {/* LOGO */}
-            </Typography>
+            ></Typography>
             <Box
               className="container-follows"
               sx={{ flexGrow: 1, display: "flex" }}
@@ -157,7 +123,6 @@ function NavBar(props) {
                 <Tooltip title="Open settings">
                   <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                     <Avatar alt="Remy Sharp" src={imgNavProfile.imgProfile} />
-                    {/* AQUI PONEMOS LA FOTO DEL USUARIO */}
                   </IconButton>
                 </Tooltip>
 

@@ -1,18 +1,18 @@
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:300);
 * {
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
 }
 
-  #hola {
+#hola {
   margin: 0;
   padding: 0;
-   overflow: hidden; 
+  overflow: hidden;
   /* background: #111; */
   /* background-repeat: no-repeat; */
-  height:100vh;
-  width: 100vw;
-  background-image: url("../images/fondo.jpg");
-}  
+  /* height:100vh;
+  width: 100vw; */
+  background-color: rgb(72, 181, 181);
+}
 
 .signupSection {
   position: absolute;
@@ -24,43 +24,37 @@
   text-align: center;
   display: flex;
   color: white;
-  box-shadow: 3px 10px 20px 5px rgba(0, 0, 0, .5);
-
+  box-shadow: 3px 10px 20px 5px rgba(0, 0, 0, 0.5);
 }
-
-
 
 .info-signup {
   width: 45%;
-  background: rgba(20, 20, 20, .8);
+  background: rgba(20, 20, 20, 0.8);
   padding: 30px 0;
-  border-right: 5px solid rgba(30, 30, 30, .8);
-
+  border-right: 5px solid rgba(30, 30, 30, 0.8);
 }
 .info-signup p {
-    font-size: 18px;
-  }
+  font-size: 18px;
+}
 
-  .info-signup h2 {
-    padding-top: 30px;
-    font-weight: 300;
-  }
-  .icon {
-    font-size: 8em;
-    padding: 20px 0;
-    color: rgba(10, 180, 180, 1);
-  }
-
+.info-signup h2 {
+  padding-top: 30px;
+  font-weight: 300;
+}
+.icon {
+  font-size: 8em;
+  padding: 20px 0;
+  color: rgba(10, 180, 180, 1);
+}
 
 .signupForm {
   width: 70%;
   padding: 30px 0;
-  background: rgba(20, 40, 40, .8);
-  transition: .2s;
-  
+  background: rgba(20, 40, 40, 0.8);
+  transition: 0.2s;
 }
 .signupForm h2 {
-    font-weight: 300;
+  font-weight: 300;
 }
 
 .inputFields {
@@ -72,7 +66,7 @@
   border-top: none;
   border-left: none;
   border-right: none;
-  background: rgba(20, 20, 20, .2);
+  background: rgba(20, 20, 20, 0.2);
   color: white;
   outline: none;
 }
@@ -84,17 +78,16 @@
 
 #join-btn {
   border: 1px solid rgba(10, 180, 180, 1);
-  background: rgba(20, 20, 20, .6);
+  background: rgba(20, 20, 20, 0.6);
   font-size: 18px;
   color: white;
   margin-top: 20px;
   padding: 10px 50px;
   cursor: pointer;
-  transition: .4s;
-  
+  transition: 0.4s;
 }
 
 #join-btn:hover {
-    background: rgba(20, 20, 20, .8);
-    padding: 10px 80px;
-  }
+  background: rgba(20, 20, 20, 0.8);
+  padding: 10px 80px;
+}

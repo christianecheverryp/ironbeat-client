@@ -1,71 +1,49 @@
-import React, { useEffect, useState } from 'react'
-import AudioPlayer from '../components/AudioPlayer'
-import { getAllMusicService } from '../services/song.services'
+import React, { useEffect, useState } from "react";
+import AudioPlayer from "../components/AudioPlayer";
+import { getAllMusicService } from "../services/song.services";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { CircularProgress } from '@mui/material';
-
+import { CircularProgress } from "@mui/material";
 
 function Home(props) {
-
-  const [allMusic, setAllMusic] = useState([])
-  const {isLogin} = props
+  const [allMusic, setAllMusic] = useState([]);
+  const { isLogin } = props;
   // const [items, setItems] = useState([])
-  const [isNext, setIsNext] = useState(false)
-  const [pageCount, setPageCount] = useState(0)
-  const [ canFetchSongs, setCanFetchSongs ] = useState(false)
-  
-  
+  const [isNext, setIsNext] = useState(false);
+  const [pageCount, setPageCount] = useState(0);
+  const [canFetchSongs, setCanFetchSongs] = useState(false);
 
-  useEffect(()=> {
-    getAllMusic()
+  useEffect(() => {
+    getAllMusic();
+  }, []);
 
-  }, [])
-
-  
-
-
-
-
-
-  const getAllMusic = async() => {
-
-    const response = await getAllMusicService(pageCount)
-    setAllMusic([...allMusic, ...response.data])
+  const getAllMusic = async () => {
+    const response = await getAllMusicService(pageCount);
+    setAllMusic([...allMusic, ...response.data]);
     // si no hay canciones en response.data, no activas el settimeout
-    if(response.data) {
+    if (response.data) {
       setTimeout(() => {
-      setCanFetchSongs(true)
-    }, 3000)
-    setIsNext(true)
+        setCanFetchSongs(true);
+      }, 3000);
+      setIsNext(true);
     }
-    
-
-
-  }
+  };
   function fetchMoreData() {
     if (canFetchSongs) {
-      setCanFetchSongs(false)
+      setCanFetchSongs(false);
       setPageCount(pageCount + 1);
       getAllMusic();
     }
-    
   }
-
- 
 
   if (!allMusic) {
-    return <div>...loading</div>
+    return <div>...loading</div>;
   }
 
-
-
-
   return (
-    <div className='flex-column align-center'>
-
-      <h1>HOME</h1>
+    <div className="flex-column align-center">
+      <h1>Welcome to Ironbeat!</h1>
       <div className="scroll-container">
-          <InfiniteScroll
+        <InfiniteScroll
           dataLength={allMusic.length}
           // next={loadMoreData}
           next={fetchMoreData}
@@ -78,24 +56,13 @@ function Home(props) {
             </div>
           }
         >
-
-      {allMusic.map((eachSong)=> {
-        return <AudioPlayer eachSong={eachSong} isLogin={isLogin}/>
-
-
-      })}
-      </InfiniteScroll>
+          {allMusic.map((eachSong) => {
+            return <AudioPlayer eachSong={eachSong} isLogin={isLogin} />;
+          })}
+        </InfiniteScroll>
       </div>
-    
-
-
-
-
-
-
-
     </div>
-  )
+  );
 }
 
-export default Home
+export default Home;

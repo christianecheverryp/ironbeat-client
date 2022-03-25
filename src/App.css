@@ -1,89 +1,32 @@
-
-
-
 .App {
   text-align: center;
   /* background-image: url("../public/background-sound.jpg"); */
   opacity: 0.91;
-   background-color: rgba(135, 196, 250, 0.345) ;
-   min-height: 100vh;
+  background-color: rgb(72, 181, 181);
+
+  min-height: 100vh;
   width: 100vw;
-  
-  
 }
-.container{
+.container {
   display: flex;
   /* width: 100vh; */
   justify-content: space-between;
   align-content: center;
- 
-  
 }
-.container-playlist{
+.container-playlist {
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
 }
-.container-follows{
+.container-follows {
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-end;
-  
 }
 
-
-
-.follow-view{
+.follow-view {
   border-style: groove;
 }
-
-/* 
- #boton-player {
-  background: OrangeRed;
-  color: white;
-  border: none;
-  width: 25px;
-  height: 25px;
-  border-radius: 100%;
-  outline: none;
-  text-transform: uppercase;
-  transition: all 0.2s ease;
-}
- 
-#boton-player:hover {
-  background: #d63d05;
-} 
-
-.controls {
-  text-align: center;
-  padding: 1em;
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: column;
-  width: 600px;
-  height: 200px;
-  
-}
-
-#contenedor-player {
-  box-shadow: 0px 0px 5px 1px black;
-  display: flex;
-  flex-wrap: wrap;
-   width: 600px;
-  height: 200px; 
-  
-  
-} */
-
-/* .song-details {
-  display: flex;
-  justify-content: center;
-
-}
-
- */
-
-
 
 
 
@@ -91,7 +34,7 @@
   display: grid;
   grid-template-columns: 10rem 1fr;
   width: 40rem;
-  background-color: rgb(99, 105, 154);
+  background-color: rgb(47, 109, 109);
   border-radius: 0.5rem;
   box-shadow: 0 1rem 1.5rem #10101024;
   overflow: hidden;
@@ -100,7 +43,6 @@
   margin-bottom: 5%;
   padding: 5%;
   transform: scale(0.47);
-
 }
 
 .player .thumb {
@@ -114,7 +56,6 @@
   height: 110px;
   object-fit: cover;
   border-radius: 100%;
-  
 }
 
 .player .info {
@@ -127,36 +68,30 @@
   margin-bottom: 1rem;
 }
 
-.player .title {
-  /* font-size: 1.5rem; */
-  /* padding-bottom: 1rem; */
-}
+
 
 .player .title .owner {
-  /* font-size: 0.9rem; */
+ 
   color: #777;
-  
 }
-.owner-name{
+.owner-name {
   text-decoration: none;
   color: white;
   margin-right: 300px;
-
 }
-.title-name{
+.title-name {
   text-decoration: none;
   color: white;
   margin-right: 20px;
   width: 200px;
-
 }
-.title{
+.title {
   text-align: start;
   margin-bottom: 30px;
   display: flex;
   flex-direction: column;
 
-  /* height: 100px; */
+
 }
 
 .player .control i {
@@ -169,17 +104,15 @@
   color: white;
   border-radius: 50%;
   cursor: pointer;
-  box-shadow: 0 0 0rem #1AAFFFAA;
+  box-shadow: 0 0 0rem #1aafffaa;
 }
-.control{
- 
+.control {
   margin-top: 100px;
   margin-left: 25px;
-  
 }
 
 .player .control i:hover {
-  box-shadow: 0 0 1.5rem #1AAFFFAA;
+  box-shadow: 0 0 1.5rem #1aafffaa;
   font-size: 1.5rem;
 }
 
@@ -203,37 +136,33 @@
   background: rgba(0, 0, 0, 0.1);
 }
 
-
-.hide-input{
+.hide-input {
   visibility: hidden;
   width: 1px;
   height: 1px;
 }
 
-.add-page{
+.add-page {
   display: flex;
   flex-direction: row;
-  justify-content:space-around;
-
+  justify-content: space-around;
 }
 
-.light-letters{
+.light-letters {
   color: white;
 }
 
-.add-container{
+.add-container {
   margin-top: 25%;
   display: flex;
   flex-direction: column;
   align-content: center;
-  
+
   width: 80vh;
   transform: scale(1.34);
-
-  
 }
 
-.upload-picture{
+.upload-picture {
   margin-top: 25%;
   display: flex;
   flex-direction: column;
@@ -242,54 +171,49 @@
   padding: 35px;
   height: 150px;
   border-radius: 5%;
-
-
 }
-.margin-between{
+#logo-camera {
+  margin-top: 400px;
+}
+.margin-between {
   margin: 20px;
-
 }
 
-.flex-column{
+.flex-column {
   display: flex;
   flex-direction: column;
 }
 
-.flex-row{
+.flex-row {
   display: flex;
   flex-direction: row;
 }
 
-.center-box{
+.center-box {
   margin-left: 25%;
 }
 
-.align-box{
+.align-box {
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.photo-song{
+.photo-song {
   margin-left: 300px;
   margin-top: -30px;
   position: absolute;
-  
-  
 }
-.sm-width{
+.sm-width {
   width: 200px;
 }
-.wave-size{
+.wave-size {
   margin: 30px -20px;
 }
 
-
-.down-container{
- justify-content: space-between;
- margin-top: 30px;
+.down-container {
+  justify-content: space-between;
+  margin-top: 30px;
 }
-
-
 
 /* .scroll-container {
   display: flex;
@@ -306,10 +230,10 @@
 /* .player {
   width: 100%  !important;
 } */
-#block-player{
-  transform: scale(1.4) 
+#block-player {
+  transform: scale(1.4);
 }
 
-.error-message{
+.error-message {
   color: red;
 }

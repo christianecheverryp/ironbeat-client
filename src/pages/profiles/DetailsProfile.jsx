@@ -1,7 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import { followService, getOtherProfile, getFavoritesOtherService, getFavoritesService } from "../../services/user.services";
-import {getMySongsService} from "../../services/song.services"
+import {
+  followService,
+  getOtherProfile,
+  getFavoritesOtherService,
+  getFavoritesService,
+} from "../../services/user.services";
+import {
+  getMySongsService,
+  getOwnerSongsService,
+} from "../../services/song.services";
 import {
   Avatar,
   Button,
@@ -14,7 +22,7 @@ import {
   Paper,
   Stack,
   Typography,
-  Divider
+  Divider,
 } from "@mui/material";
 import "../../css/details_profile.css";
 import { Box } from "@mui/system";
@@ -25,13 +33,13 @@ function DetailsProfile(props) {
   const { id } = useParams();
   const [otherProfile, setOtherProfile] = useState(null);
   const [follow, setFollow] = useState(null);
-  const [favouriteOther, setFavouriteOther] = useState(null);
+
   const [mySongs, setMySongs] = useState(null);
   const navigate = useNavigate();
 
   useEffect(() => {
     getProfile();
-    getFavouriteSongs();
+
     getMyOtherSongs();
   }, []);
 
@@ -52,7 +60,7 @@ function DetailsProfile(props) {
         setFollow(true);
       }
 
-    setOtherProfile(response.data);
+      setOtherProfile(response.data);
     } catch (err) {
       if (err.response.status === 401) {
         navigate("/");
@@ -71,47 +79,22 @@ function DetailsProfile(props) {
     }
   };
 
-  const getFavouriteSongs = async () => {
-    try{
-      const response = await getFavoritesService();
-      setFavouriteOther(response.data)
-
-    }catch(err){
-
-    }
+  const getMyOtherSongs = async () => {
+    try {
+      const response = await getOwnerSongsService(id);
+      setMySongs(response.data);
+    } catch (err) {}
   };
 
-  const getMyOtherSongs = async () => {
-    try{
-      const response = await getMySongsService();
-      setMySongs(response.data)
-    }catch(err){
-
-    }
-  }
-
-  if (logUserId === id) {
+  if (logUserId == id) {
     navigate("/profile");
   }
 
-  if (!otherProfile || !favouriteOther || !mySongs) {
+  if (!otherProfile || !mySongs) {
     return <h3>...Loading</h3>;
   }
-  // "container-profile-details"
+
   return (
-    /*     <div >
-            <h3>Ventana del perfil de {otherProfile.username}</h3>
-
-      <img src={otherProfile.imgProfile} alt="Profile-Picture" width={100} />
-      <p>{otherProfile.username}</p>
-      <p>{otherProfile.bio}</p>
-
-      {isLogin && (
-        <Button onClick={handleFollow}>{follow ? "UnFollow" : "Follow"}</Button>
-      )}
-
-
-    </div> */
     <Stack
       direction={{ xs: "column", sm: "row" }}
       spacing={{ xs: 1, sm: 2, md: 4 }}
@@ -154,114 +137,47 @@ function DetailsProfile(props) {
                     {follow ? "UnFollow" : "Follow"}
                   </Button>
                 )}
-
               </Grid>
             </Grid>
           </Grid>
         </Grid>
       </Paper>
 
+      <Grid item xs={6}>
+        <Paper
+          sx={{
+            p: 10,
+            margin: "auto",
+            maxWidth: 500,
+            flexGrow: 1,
+            backgroundColor: (theme) =>
+              theme.palette.mode === "dark" ? "#1A2027" : "#fff",
+          }}
+        >
+          <List>
+            <Typography variant="h6" gutterBottom component="div">
+              Songs of {otherProfile.username}
+            </Typography>
+            <Divider />
 
- 
-
-      <Grid container columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
-        <Grid item xs={6}>
-          <Paper
-            sx={{
-              p: 10,
-              margin: "auto",
-              maxWidth: 500,
-              flexGrow: 1,
-              backgroundColor: (theme) =>
-                theme.palette.mode === "dark" ? "#1A2027" : "#fff",
-            }}>
-            <List >
-                <Typography variant="h6" gutterBottom component="div">
-                  My Favourites Songs
-                </Typography>
-                <Divider/>
-                {favouriteOther.favorites.map((eachSong) => {
-                  return (
-
-                  <Link style={{color:'inherit', textDecoration: 'none' }}  to={`/song/${eachSong._id}/details`}> 
-  
-                    <ListItem button key={eachSong}>
-
-                      <ListItemAvatar>
-                        <Avatar src={eachSong.imgSong}/>
-                      </ListItemAvatar> 
-
-
-                      <ListItemText
-                        underline="none"
-                        primary={eachSong.title}
-                        secondary={eachSong.owner.username}
-                      />
-                    </ListItem>
-                  </Link>  
-                  )
-                })}
-
-      </List>
-          
-           {/*  <List>
-              <Typography variant="h6" gutterBottom component="div">
-                My Favourites Songs
-              </Typography>
-              <Divider />
-
-              {myFavouriteSongs.favorites.map((eachSong) => {
-                return (
+            {mySongs.map((eachSong) => {
+              return (
+                <Link
+                  style={{ color: "inherit", textDecoration: "none" }}
+                  to={`/song/${eachSong._id}/details`}
+                >
                   <ListItem button key={eachSong}>
-
-                    <ListItemText
-                      underline="none"
-                      primary={eachSong.title}
-                      secondary={eachSong.owner.username}
-                    />
-                  </ListItem>
-                );
-              })}
-            </List> */}
-          </Paper>
-        </Grid>
-
-        <Grid item xs={6}>
-          <Paper
-            sx={{
-              p: 10,
-              margin: "auto",
-              maxWidth: 500,
-              flexGrow: 1,
-              backgroundColor: (theme) =>
-                theme.palette.mode === "dark" ? "#1A2027" : "#fff",
-            }}
-          >
-            <List>
-              <Typography variant="h6" gutterBottom component="div">
-                My Songs
-              </Typography>
-              <Divider />
-
-              {mySongs.map((eachSong) => {
-                return (
-                <Link style={{color:'inherit', textDecoration: 'none' }}  to={`/song/${eachSong._id}/details`}> 
-  
-                  <ListItem button key={eachSong}>
-
                     <ListItemAvatar>
-                        <Avatar src={eachSong.imgSong}/>
-                    </ListItemAvatar> 
-
+                      <Avatar src={eachSong.imgSong} />
+                    </ListItemAvatar>
 
                     <ListItemText underline="none" primary={eachSong.title} />
                   </ListItem>
                 </Link>
-                );
-              })}
-            </List>
-          </Paper>
-        </Grid>
+              );
+            })}
+          </List>
+        </Paper>
       </Grid>
     </Stack>
   );

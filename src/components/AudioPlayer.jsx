@@ -1,18 +1,18 @@
 import React, { useEffect, useRef, useState } from "react";
-import {Link} from "react-router-dom"
+import { Link } from "react-router-dom";
 import WaveSurfer from "wavesurfer.js";
-import { getSongDetailsService, getSongPlaysService } from "../services/song.services";
-import { useNavigate } from 'react-router-dom'
+import {
+  getSongDetailsService,
+  getSongPlaysService,
+} from "../services/song.services";
+import { useNavigate } from "react-router-dom";
 import { Button } from "@mui/material";
 import { putFavoritesService } from "../services/user.services";
-import PauseIcon from '@mui/icons-material/Pause';
-import PlayArrowIcon from '@mui/icons-material/PlayArrow';
-import PlaylistAddIcon from '@mui/icons-material/PlaylistAdd';
-import FavoriteIcon from '@mui/icons-material/Favorite';
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
-
-
-
+import PauseIcon from "@mui/icons-material/Pause";
+import PlayArrowIcon from "@mui/icons-material/PlayArrow";
+import PlaylistAddIcon from "@mui/icons-material/PlaylistAdd";
+import FavoriteIcon from "@mui/icons-material/Favorite";
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 
 const formWaveSurferOptions = (ref) => ({
   container: ref,
@@ -35,12 +35,8 @@ function AudioPlayer(props) {
   const [playing, setPlay] = useState(false); //AQUI ES PARA DAR EL PLAY
   const [volume, setVolume] = useState(0.5); //ESE ES EL VOLUMEN
   const { isLogin, logUserId } = props;
-  const navigate = useNavigate()
-  const [like, setLike] = useState(false)
-
-  
-
-
+  const navigate = useNavigate();
+  const [like, setLike] = useState(false);
 
   useEffect(() => {
     setPlay(false);
@@ -71,14 +67,12 @@ function AudioPlayer(props) {
 
   const handlePlayPause = async () => {
     setPlay(!playing);
-    if(playing){
-      await getSongPlaysService(props.eachSong._id)
+    if (playing) {
+      await getSongPlaysService(props.eachSong._id);
     }
 
     wavesurfer.current.playPause();
-
   };
-  
 
   const onVolumeChange = (e) => {
     const { target } = e;
@@ -91,117 +85,122 @@ function AudioPlayer(props) {
   };
 
   const handleAddList = () => {
-    navigate(`/${props.eachSong._id}/add-list`)
-  }
+    navigate(`/${props.eachSong._id}/add-list`);
+  };
 
-  const handleAddCart = async() => {
-    try{
-      await putFavoritesService(props.eachSong._id)
-      setLike(!like)
-      
-
+  const handleAddCart = async () => {
+    try {
+      await putFavoritesService(props.eachSong._id);
+      setLike(!like);
 
       // const followArray = logUserId.shoppingList.filter((eachLike) => {
       //   return eachLike == props.eachSong._id
       //   })
-        
 
       //   if (followArray.length < 1){
       //     setLike(false)
       //   } else {
       //     setLike(true)
       //   }
-      
-
-    }catch(err){
-      navigate("/error")
+    } catch (err) {
+      navigate("/error");
     }
-    
-
-  }
+  };
 
   return (
     <div id="block-player">
-    <div className="player">
-     <div className="control">
-            <i onClick={handlePlayPause}>{!playing ?  <PlayArrowIcon/> : <PauseIcon/> }</i>
-          </div>
-      
-
-      <div className="info">
-      <div className="name-photo-container">
-
-  <div className="title">
-          
-        <img className="photo-song" src={props.eachSong.imgSong} alt="" width={50} />
-      
-          <div className="owner ">
-              <span id="current"><Link className="owner-name sm-width" to={`/profile/${props.eachSong.owner._id}/details`}>@{props.eachSong.owner.username}</Link></span>
-              
-            </div>
-            
-            <div className="title-song sm-width" >
-            <Link className="title-name" to={`/song/${props.eachSong._id}/details`}>{props.eachSong.title}</Link>     {/* PREGUNTAR SI HAY ALGUNA FORMA BONITA DE HACERLO */}
-            </div>
-            
-          </div>
-
-      </div>
-      
-        <div className="detail">
-        
-        
-          
-
-         
+      <div className="player">
+        <div className="control">
+          <i onClick={handlePlayPause}>
+            {!playing ? <PlayArrowIcon /> : <PauseIcon />}
+          </i>
         </div>
 
-        <div id="waveform" className="wave-size" ref={waveformRef}></div>
-        <input
-          type="range"
-          id="volume"
-          name="volume"
-          // waveSurfer recognize value of `0` same as `1`
-          //  so we need to set some zero-ish value for silence
-          min="0.01"
-          max="1"
-          step=".025"
-          onChange={onVolumeChange}
-          defaultValue={volume}
-        />
+        <div className="info">
+          <div className="name-photo-container">
+            <div className="title">
+              <img
+                className="photo-song"
+                src={props.eachSong.imgSong}
+                alt=""
+                width={50}
+              />
 
+              <div className="owner ">
+                <span id="current">
+                  <Link
+                    className="owner-name sm-width"
+                    to={`/profile/${props.eachSong.owner._id}/details`}
+                  >
+                    @{props.eachSong.owner.username}
+                  </Link>
+                </span>
+              </div>
 
-        <div className="down-container flex-row">
-
-        <div className="flex-row">
-<div className="owner light-letters">
-             
-              {isLogin && <Button style={{
-                backgroundColor: "#00bcd4",
-                fontSize: "8px",
-                
-              }} onClick={handleAddList}><PlaylistAddIcon/></Button>}
-              
+              <div className="title-song sm-width">
+                <Link
+                  className="title-name"
+                  to={`/song/${props.eachSong._id}/details`}
+                >
+                  {props.eachSong.title}
+                </Link>{" "}
+                {/* PREGUNTAR SI HAY ALGUNA FORMA BONITA DE HACERLO */}
+              </div>
             </div>
-            <div>{isLogin && <Button  onClick={handleAddCart}>{!like ? <FavoriteIcon color="error"/> : <FavoriteBorderIcon color="error"/>}</Button>}</div>
+          </div>
 
-        </div>
+          <div className="detail"></div>
 
+          <div id="waveform" className="wave-size" ref={waveformRef}></div>
+          <input
+            type="range"
+            id="volume"
+            name="volume"
+            // waveSurfer recognize value of `0` same as `1`
+            //  so we need to set some zero-ish value for silence
+            min="0.01"
+            max="1"
+            step=".025"
+            onChange={onVolumeChange}
+            defaultValue={volume}
+          />
 
-           
-            
+          <div className="down-container flex-row">
+            <div className="flex-row">
+              <div className="owner light-letters">
+                {isLogin && (
+                  <Button
+                    style={{
+                      backgroundColor: "#00bcd4",
+                      fontSize: "8px",
+                    }}
+                    onClick={handleAddList}
+                  >
+                    <PlaylistAddIcon />
+                  </Button>
+                )}
+              </div>
+              <div>
+                {isLogin && (
+                  <Button onClick={handleAddCart}>
+                    {!like ? (
+                      <FavoriteIcon color="error" />
+                    ) : (
+                      <FavoriteBorderIcon color="error" />
+                    )}
+                  </Button>
+                )}
+              </div>
+            </div>
 
             <div className="owner">
               <span id="current">{props.eachSong.plays} Plays</span>
-  
             </div>
+          </div>
         </div>
-       
       </div>
     </div>
-    </div>
   );
-
 }
 
 export default AudioPlayer;
