@@ -81,7 +81,7 @@ function AddSong() {
         ) : (
           <img src={imgSong} width={100} />
         )}
-      </div>
+      
 
       <label htmlFor="icon-button-file">
         <Input
@@ -99,6 +99,7 @@ function AddSong() {
           <PhotoCamera id="logo-camera" />
         </IconButton>
       </label>
+      </div>
 
       <div className="add-page">
         <div className="add-container">

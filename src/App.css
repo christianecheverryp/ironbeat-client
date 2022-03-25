@@ -171,10 +171,11 @@
   padding: 35px;
   height: 150px;
   border-radius: 5%;
+  margin-right: 200px;
 }
-#logo-camera {
+/* #logo-camera {
   margin-top: 400px;
-}
+} */
 .margin-between {
   margin: 20px;
 }
