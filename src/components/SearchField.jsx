@@ -51,9 +51,10 @@ function SearchField() {
     },
   }));
 
-  // const handleSearch = async() => {
+  // const handleSearch = async(e) => {
+  //   e.preventDefault()
   //   try{
-  //     const response = await searchService()
+  //     await searchService()
   //     navigate("/")
   //   }catch(err){
   //     navigate("/error")
@@ -71,6 +72,9 @@ function SearchField() {
       <StyledInputBase
         placeholder="Search…"
         inputProps={{ "aria-label": "search" }}
+        // onChange={(e)=> handleSearch(e.target.value)}
+
+
        
       />
     </Search>

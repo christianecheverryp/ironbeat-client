@@ -79,7 +79,7 @@ function NavBar(props) {
       <AppBar position="static">
         <Container maxWidth="xl">
           <Toolbar disableGutters>
-            <SearchField />
+            {/* <SearchField /> */}
 
             <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
               <IconButton
