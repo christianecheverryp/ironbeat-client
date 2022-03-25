@@ -1,6 +1,12 @@
+import { Button } from "@mui/material";
 import React from "react";
+import { deleteFromTheListService } from "../services/song.services";
 
 const PlayList = ({ singleList, selectedTrack, setSelectedTrack }) => {
+
+  // const handleDelete = async(id) => {
+  //   await deleteFromTheListService(id)
+  // }
 
   return (
     <div className="playlist">
@@ -15,6 +21,7 @@ const PlayList = ({ singleList, selectedTrack, setSelectedTrack }) => {
           onClick={() => setSelectedTrack(eachTrack)}
         >
           {eachTrack.title}
+          {/* <div><Button onClick={handleDelete(eachTrack._id)}>delete</Button> </div> */}
         </div>
       ))}
     </div>

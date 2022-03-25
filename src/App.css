@@ -295,14 +295,21 @@
   display: flex;
   justify-content: center;
   width: 20%;
-}
+} */
 
-.infinite-scroll-component {
+/* .infinite-scroll-component {
   width: 100% !important;
   margin: 0 !important;
   padding: 0 !important;
-}
+} */
 
-.player {
+/* .player {
   width: 100%  !important;
 } */
+#block-player{
+  transform: scale(1.4) 
+}
+
+.error-message{
+  color: red;
+}

@@ -117,6 +117,7 @@ function AudioPlayer(props) {
   }
 
   return (
+    <div id="block-player">
     <div className="player">
      <div className="control">
             <i onClick={handlePlayPause}>{!playing ?  <PlayArrowIcon/> : <PauseIcon/> }</i>
@@ -193,7 +194,9 @@ function AudioPlayer(props) {
        
       </div>
     </div>
+    </div>
   );
+
 }
 
 export default AudioPlayer;

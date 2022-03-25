@@ -40,6 +40,16 @@ const getRankingPlaysService = () => {
     return service.get("/ranking-plays")
 }
 
+const deleteSongService = (id) => {
+    return service.delete(`/${id}/delete-song`)
+
+}
+
+const deleteFromTheListService = (id) => {
+    return service.patch(`/${id}/delete-list`)
+}
+
+
 
 export {
     addSongService,
@@ -48,6 +58,8 @@ export {
     getSongPlaysService,
     getMySongsService,
     getOwnerSongsService,
-    getRankingPlaysService
+    getRankingPlaysService,
+    deleteSongService,
+    deleteFromTheListService
 
 }

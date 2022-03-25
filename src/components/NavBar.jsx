@@ -1,5 +1,5 @@
 import { NavLink, useNavigate, Link as RouterLink } from "react-router-dom";
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -11,51 +11,39 @@ import Container from "@mui/material/Container";
 import Avatar from "@mui/material/Avatar";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
-import ListItemIcon from '@mui/material/ListItemIcon';
+import ListItemIcon from "@mui/material/ListItemIcon";
 
 import SearchField from "./SearchField";
 // const pages = ['Products', 'Pricing', 'Blog'];
-import PasswordIcon from '@mui/icons-material/Password';
-import LoginIcon from '@mui/icons-material/Login';
+import PasswordIcon from "@mui/icons-material/Password";
+import LoginIcon from "@mui/icons-material/Login";
 
-import AddIcon from '@mui/icons-material/Add';
-import EmailIcon from '@mui/icons-material/Email';
-import PersonIcon from '@mui/icons-material/Person';
-import Logout from '@mui/icons-material/Logout';
-import HomeIcon from '@mui/icons-material/Home';
+import AddIcon from "@mui/icons-material/Add";
+import EmailIcon from "@mui/icons-material/Email";
+import PersonIcon from "@mui/icons-material/Person";
+import Logout from "@mui/icons-material/Logout";
+import HomeIcon from "@mui/icons-material/Home";
 import { getMyProfileService } from "../services/user.services";
-import HeadphonesIcon from '@mui/icons-material/Headphones';
-
-
-
-
+import HeadphonesIcon from "@mui/icons-material/Headphones";
 
 function NavBar(props) {
   const { isLogin, setIsLogin } = props;
-  const [imgNavProfile, setImgNavProfile] = useState("")
-
-
-  
+  const [imgNavProfile, setImgNavProfile] = useState("");
 
   const navigate = useNavigate();
 
-  useEffect(()=> {
-    isLogin && getProfile()
-  }, [])
- 
-  const getProfile = async() => {
-    try{
-      const response = await getMyProfileService()
-      setImgNavProfile(response.data)
-      
+  useEffect(() => {
+    isLogin && getProfile();
+  }, []);
 
-    } catch(err){
-      navigate("/error")
+  const getProfile = async () => {
+    try {
+      const response = await getMyProfileService();
+      setImgNavProfile(response.data);
+    } catch (err) {
+      navigate("/error");
     }
-
-  }
-
-
+  };
 
   const handleLogOut = () => {
     setIsLogin(false);
@@ -64,30 +52,19 @@ function NavBar(props) {
     navigate("/");
   };
 
-
-
-  /* INICIO ESTILOS MUI */
-
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
   const [anchorElUser2, setAnchorElUser2] = React.useState(null);
 
-  // FUNCION DE BOTONES DEL NAV EN VENTANA PEQUEÑA(MOVILES)
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
 
-  // FUNCION CUANDO CLICKAMOS EN LA IMAGEN NAVBAR DEL PERFIL
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
   };
   const handleOpenUserMenu2 = (event) => {
     setAnchorElUser2(event.currentTarget);
-  };
-
-  // FUNCION DE BOTOONES DEL NAV EN VENTANA GRANDE
-  const handleCloseNavMenu = () => {
-    setAnchorElNav(null);
   };
 
   const handleCloseUserMenu = () => {
@@ -97,52 +74,13 @@ function NavBar(props) {
     setAnchorElUser2(null);
   };
 
-  /* FIN ESTILOS MUI */
-
   return (
     <div>
-      {/*         
-
-        <NavLink to="/add-song"> <img src={add_icon} alt="AddImg" width={20}/> </NavLink>
-
-
-        <NavLink to="/messages">
-            <img src={message_icon} alt="MessageImg" width={20}/>
-        </NavLink> 
-
-         <NavLink to="/profile">
-            <img src={profile_icon} alt="ProfileImg" width={20} />
-        </NavLink>
-        
-
-        <NavLink to="/">
-            <img src={home_icon} alt="HomeImg" width={20} />
-        </NavLink>
-
-        <NavLink to="/signup">
-            signup
-        </NavLink>
-
-        <NavLink to="/login">
-            login
-        </NavLink>
-
-        <button onClick={handleLogOut}>Logout</button> */}
-
-      {/* INICIO ESTILOS MUI */}
-
-      {/*         <Box sx={{ flexGrow: 1 }}>
-      <FormGroup>
-        <FormControlLabel control={ <Switch  checked={auth} onChange={handleChange} aria-label="login switch" /> } label={auth ? 'Logout' : 'Login'} />
-      </FormGroup> 
-      </Box> */}
-
       <AppBar position="static">
         <Container maxWidth="xl">
           <Toolbar disableGutters>
+            <SearchField />
 
-          <SearchField /> {/* BARRA DE BUSQUEDA */}
-                        
             <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
               <IconButton
                 size="large"
@@ -152,7 +90,7 @@ function NavBar(props) {
                 onClick={handleOpenNavMenu}
                 color="inherit"
               >
-                <MenuIcon />
+                {/* <MenuIcon /> */}
               </IconButton>
 
               {/* <Menu
@@ -187,236 +125,123 @@ function NavBar(props) {
               noWrap
               component="div"
               sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}
-              
             >
               {/* LOGO */}
             </Typography>
-            <Box className="container-follows" sx={{ flexGrow: 1, display: "flex" }}>
-             
-             {/* <Image className="img-size" src="../images/headphone.jpg" /> */}
-             <IconButton component={RouterLink}
-                      to="/" size="large" color="inherit"  >
-
-                 <HeadphonesIcon /> 
-                 <Typography>Ironbeat</Typography>
-            </IconButton>
-            </Box> 
-
-           
+            <Box
+              className="container-follows"
+              sx={{ flexGrow: 1, display: "flex" }}
+            >
+              <IconButton
+                component={RouterLink}
+                to="/"
+                size="large"
+                color="inherit"
+              >
+                <HeadphonesIcon />
+                <Typography>Ironbeat</Typography>
+              </IconButton>
+            </Box>
 
             <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-
-            {/* <NavLink to="/">
-              <HomeIcon fontSize="large" />
-            </NavLink> */}
-              {/* AQUI IBAN LOS  LINKS ANTES PODRIAMOS PONER EL LOGO AQUI */}
-              
-
- <img className="photo-navbar" src="../images/headphone.jpg" alt="" width={50}/>
-
-        
+              <img
+                className="photo-navbar"
+                src="../images/headphone.jpg"
+                alt=""
+                width={50}
+              />
             </Box>
 
-           
-
-
-
-
-
-
-
-
-  {/* CUANDO ESTA CONECTADO */}
-
-     
-              {isLogin ?
+            {isLogin ? (
               <Box sx={{ flexGrow: 0 }}>
-              <Tooltip title="Open settings">
-                <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                  <Avatar alt="Remy Sharp"  src={imgNavProfile.imgProfile}/>        
-                  {/* AQUI PONEMOS LA FOTO DEL USUARIO */}
-                </IconButton>
-              </Tooltip>
+                <Tooltip title="Open settings">
+                  <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                    <Avatar alt="Remy Sharp" src={imgNavProfile.imgProfile} />
+                    {/* AQUI PONEMOS LA FOTO DEL USUARIO */}
+                  </IconButton>
+                </Tooltip>
 
-              <Menu
-                sx={{ mt: "45px" }}
-                id="menu-appbar"
-                anchorEl={anchorElUser}
-                anchorOrigin={{
-                  vertical: "top",
-                  horizontal: "right",
-                }}
-                keepMounted
-                transformOrigin={{
-                  vertical: "top",
-                  horizontal: "right",
-                }}
-                open={Boolean(anchorElUser)}
-                onClose={handleCloseUserMenu}
-              >
-                {/* <MenuItem onClick={handleCloseUserMenu}>
-                  {" "}
-           
-                  <Button
-                    component={RouterLink}
-                    to="/add-song"
-                    sx={{ my: 2, color: "white", display: "block" }}
-                  >
+                <Menu
+                  sx={{ mt: "45px" }}
+                  id="menu-appbar"
+                  anchorEl={anchorElUser}
+                  anchorOrigin={{
+                    vertical: "top",
+                    horizontal: "right",
+                  }}
+                  keepMounted
+                  transformOrigin={{
+                    vertical: "top",
+                    horizontal: "right",
+                  }}
+                  open={Boolean(anchorElUser)}
+                  onClose={handleCloseUserMenu}
+                >
+                  <MenuItem component={RouterLink} to="/add-song">
+                    <ListItemIcon>
+                      <AddIcon fontSize="small" />
+                    </ListItemIcon>
                     Add Song
-                  </Button>
-                  <NavLink to="/messages">
-                    <img src={message_icon} alt="MessageImg" width={20} />
-                  </NavLink>
-                  <NavLink to="/profile">
-                    <img src={profile_icon} alt="ProfileImg" width={20} />
-                  </NavLink>
-                  
-                  
-                  <Typography textAlign="center">
-                    {" "}
-                    <button onClick={handleLogOut}>Logout</button>
-                  </Typography>
-                </MenuItem> */}
+                  </MenuItem>
 
-              <MenuItem component={RouterLink}
-                      to="/add-song">
-                <ListItemIcon>
-                  <AddIcon fontSize="small" />
-                </ListItemIcon>
-                  Add Song
-              </MenuItem>
+                  <MenuItem component={RouterLink} to="/profile">
+                    <ListItemIcon>
+                      <PersonIcon fontSize="small" />
+                    </ListItemIcon>
+                    Profile
+                  </MenuItem>
 
-              <MenuItem component={RouterLink}
-                      to="/messages">
-                <ListItemIcon>
-                  <EmailIcon fontSize="small" />
-                </ListItemIcon>
-                  Messages
-              </MenuItem>
+                  <MenuItem onClick={handleLogOut}>
+                    <ListItemIcon>
+                      <Logout fontSize="small" />
+                    </ListItemIcon>
+                    Logout
+                  </MenuItem>
+                </Menu>
+              </Box>
+            ) : (
+              <Box sx={{ flexGrow: 0 }}>
+                <Tooltip title="Open settings">
+                  <IconButton onClick={handleOpenUserMenu2} sx={{ p: 0 }}>
+                    <Avatar alt="Remy Sharp" src={imgNavProfile.imgProfile} />{" "}
+                  </IconButton>
+                </Tooltip>
 
-              <MenuItem component={RouterLink}
-                      to="/profile">
-                <ListItemIcon>
-                  <PersonIcon fontSize="small" />
-                </ListItemIcon>
-                  Profile
-              </MenuItem>
+                <Menu
+                  sx={{ mt: "45px" }}
+                  id="menu-appbar"
+                  anchorEl={anchorElUser2}
+                  anchorOrigin={{
+                    vertical: "top",
+                    horizontal: "right",
+                  }}
+                  keepMounted
+                  transformOrigin={{
+                    vertical: "top",
+                    horizontal: "right",
+                  }}
+                  open={Boolean(anchorElUser2)}
+                  onClose={handleCloseUserMenu2}
+                >
+                  <MenuItem component={RouterLink} to="/signup">
+                    <ListItemIcon>
+                      <PasswordIcon fontSize="small" />
+                    </ListItemIcon>
+                    Sig Up
+                  </MenuItem>
 
-              <MenuItem onClick={handleLogOut}>
-                <ListItemIcon>
-                  <Logout fontSize="small" />
-                </ListItemIcon>
-                  Logout
-              </MenuItem>
-
-                
-
-
-
-
-
-
-              </Menu>
-            </Box>
-             :  <Box sx={{ flexGrow: 0 }}>
-              <Tooltip title="Open settings">
-                <IconButton onClick={handleOpenUserMenu2} sx={{ p: 0 }}>
-                  <Avatar alt="Remy Sharp" src={imgNavProfile.imgProfile} />{" "}
-                  {/* AQUI PONEMOS LA FOTO DEL USUARIO */}
-                </IconButton>
-              </Tooltip>
-
-              <Menu
-                sx={{ mt: "45px" }}
-                id="menu-appbar"
-                anchorEl={anchorElUser2}
-                anchorOrigin={{
-                  vertical: "top",
-                  horizontal: "right",
-                }}
-                keepMounted
-                transformOrigin={{
-                  vertical: "top",
-                  horizontal: "right",
-                }}
-                open={Boolean(anchorElUser2)}
-                onClose={handleCloseUserMenu2}
-              >
-                {/* <MenuItem onClick={handleCloseUserMenu2}>
-                  {" "}
-
-                  { FUNCIONALIDADES DEL MENU USUARIO *
-
-                  <Typography textAlign="center">SignUp</Typography>
-                  
-                  <Typography textAlign="center">LogIn</Typography>
-
-                   <Button
-                    component={RouterLink}
-                    to="/signup"
-                    sx={{ my: 2, color: "white", display: "block" }}
-                  >
-                    SignUp
-                  </Button> */}
-
-
-                  {/* <Button
-                    component={RouterLink}
-                    to="/login"
-                    sx={{ my: 2, color: "white", display: "block" }}
-                  >
+                  <MenuItem component={RouterLink} to="/login">
+                    <ListItemIcon>
+                      <LoginIcon fontSize="small" />
+                    </ListItemIcon>
                     Login
-                  </Button> 
-
-                </MenuItem>
- */}
-                <MenuItem component={RouterLink}
-                    to="/signup">
-          <ListItemIcon>
-            <PasswordIcon fontSize="small" />
-          </ListItemIcon>
-          Sig Up
-        </MenuItem>
-
-        <MenuItem component={RouterLink}
-                    to="/login">
-          <ListItemIcon>
-            <LoginIcon fontSize="small" />
-          </ListItemIcon>
-          Login
-        </MenuItem>
-{/*         <MenuItem>
-          <ListItemIcon>
-            <Logout fontSize="small" />
-          </ListItemIcon>
-          Logout
-        </MenuItem> */}
-
-
-
-              </Menu>
-            </Box>}
-            
-
-
-
-
-
-
-
-
-
-        
-
-
-
-
-            
+                  </MenuItem>
+                </Menu>
+              </Box>
+            )}
           </Toolbar>
         </Container>
       </AppBar>
-
-      {/* FIN ESTILOS MUI */}
     </div>
   );
 }

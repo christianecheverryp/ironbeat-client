@@ -138,7 +138,7 @@ function MyProfile() {
 
               {myFavouriteSongs.favorites.map((eachSong) => {
                 return (
-                  <ListItem button key={eachSong}>
+                  <Link to={`/song/${eachSong._id}/details`}> <ListItem button key={eachSong}>
                     {/*                     <ListItemAvatar>
                       <Avatar>
                         <MusicIcon />
@@ -147,6 +147,7 @@ function MyProfile() {
 
                     <ListItemText underline="none" primary={eachSong.title} secondary={eachSong.owner.username}/>
                   </ListItem>
+                  </Link>
                 );
               })}
             </List>
@@ -172,7 +173,7 @@ function MyProfile() {
 
               {MySongs.map((eachSong) => {
                 return (
-                  <ListItem button key={eachSong}>
+                 <Link to={`/song/${eachSong._id}/details`}> <ListItem button key={eachSong}>
                     {/*                     <ListItemAvatar>
          <Avatar>
            <MusicIcon />
@@ -180,7 +181,7 @@ function MyProfile() {
        </ListItemAvatar> */}
 
                     <ListItemText underline="none" primary={eachSong.title} />
-                  </ListItem>
+                  </ListItem></Link>
                 );
               })}
             </List>

@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
-import { getSongDetailsService } from '../../services/song.services';
+import { deleteSongService, getSongDetailsService } from '../../services/song.services';
 import "../../images/style.css"
 import AudioPlayer from '../../components/AudioPlayer';
 
@@ -29,8 +29,22 @@ function SongDetails(props) {
     
     getSong(); 
     
+    
 
   }, [])
+
+  const handleDeleteYourSong = async() => {
+    try{
+
+      await deleteSongService(id)
+      console.log(id)
+      navigate("/")
+    }catch(err){
+      navigate("/error")
+    }
+
+
+  }
 
 
 
@@ -63,6 +77,9 @@ function SongDetails(props) {
       
     <AudioPlayer eachSong={songDetail} isLogin={isLogin} />
     </div>
+
+    <button onClick={handleDeleteYourSong}>Delete Song</button>
+
     
 
    

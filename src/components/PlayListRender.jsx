@@ -1,8 +1,10 @@
+import { NextWeekTwoTone } from '@mui/icons-material'
+import { Button } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import AudioPlayer from "../components/AudioPlayer"
 import PlayList from '../components/PlayList'
-import { getSingleListService } from '../services/playlist.services'
+import { deletePlaylistService, getSingleListService } from '../services/playlist.services'
 import Waveform from './Waveform'
 
 function PlayListRender() {
@@ -28,6 +30,16 @@ function PlayListRender() {
         navigate("/error")
      }
  }
+
+ const handleDelete = async() => {
+    try{
+       await deletePlaylistService(id)
+    navigate("/")
+    }catch(err){
+       navigate("/error")
+    }
+    
+ }
  if(!singleList || !selectedTrack){
      return <p>...Loading</p>
  }
@@ -43,6 +55,7 @@ function PlayListRender() {
          <AudioPlayer eachSong={selectedTrack} />
          <PlayList singleList={singleList} selectedTrack={selectedTrack} setSelectedTrack={setSelectedTrack}/> 
          
+         <Button onClick={handleDelete}>Delete playlist</Button>
 
 
     </div>
