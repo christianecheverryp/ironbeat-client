@@ -4,6 +4,7 @@ import { getAllMusicService } from '../services/song.services'
 import InfiniteScroll from "react-infinite-scroll-component";
 import { CircularProgress } from '@mui/material';
 
+
 function Home(props) {
 
   const [allMusic, setAllMusic] = useState([])
@@ -60,6 +61,9 @@ function Home(props) {
     <div className='flex-column align-center'>
 
       <h1>HOME</h1>
+
+
+      
       <InfiniteScroll
           dataLength={allMusic.length}
           // next={loadMoreData}

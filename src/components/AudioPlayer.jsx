@@ -11,6 +11,7 @@ import PlaylistAddIcon from '@mui/icons-material/PlaylistAdd';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 
+
 const formWaveSurferOptions = (ref) => ({
   container: ref,
   waveColor: "#eee",
@@ -177,7 +178,7 @@ function AudioPlayer(props) {
               }} onClick={handleAddList}><PlaylistAddIcon/></Button>}
               
             </div>
-            <div>{isLogin && <Button onClick={handleAddCart}>{!like ? <FavoriteIcon/> : <FavoriteBorderIcon/>}</Button>}</div>
+            <div>{isLogin && <Button  onClick={handleAddCart}>{!like ? <FavoriteIcon/> : <FavoriteBorderIcon/>}</Button>}</div>
 
         </div>
 

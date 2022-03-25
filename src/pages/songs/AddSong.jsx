@@ -67,6 +67,10 @@ function AddSong() {
     }
   };
 
+  const Input = styled('input')({
+    display: 'none',
+  });
+
   return (
     <div className="flex-row center-box">
     <div className="upload-picture">
@@ -77,10 +81,10 @@ function AddSong() {
           {imageUploading ? (
             <div>...Loading</div>
           ) : (
-            <img src={imgSong} width={100} />
+             <img src={imgSong} width={100} /> 
           )}
 
-          <label className="margin-between" htmlFor="icon-button-file">
+{/*           <label className="margin-between" htmlFor="icon-button-file">
             <Input
               className="hide-input"
               accept="image/*"
@@ -99,6 +103,13 @@ function AddSong() {
             >
               <PhotoCamera />
             </IconButton>
+          </label> */}
+
+          <label htmlFor="icon-button-file">
+            <Input accept="image/*" id="icon-button-file" multiple type="file" onChange={(e) => handleImgUpload(e)}/>
+              <IconButton color="primary" aria-label="upload picture" component="span">
+                <PhotoCamera />
+              </IconButton>
           </label>
           
 

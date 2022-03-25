@@ -29,30 +29,28 @@ function MyProfile() {
   const [myProfile, setMyProfile] = useState(null);
   const navigate = useNavigate();
   const [myFavouriteSongs, setFavouriteSongs] = useState(null);
-  const [MySongs, setMySongs] = useState(null)
+  const [MySongs, setMySongs] = useState(null);
 
   useEffect(() => {
     getProfile();
     getMyFavouriteSongs();
-    getMySongs()
+    getMySongs();
   }, []);
 
   const getMyFavouriteSongs = async () => {
     try {
       const response = await getFavoritesService();
       setFavouriteSongs(response.data);
-      
     } catch (err) {}
   };
 
   const getMySongs = async () => {
-    try{
+    try {
       const response = await getMySongsService();
-      setMySongs(response.data)
-    }catch(err){
-
-    }
-  }
+      setMySongs(response.data);
+      console.log("he", response.data)
+    } catch (err) {}
+  };
 
   const getProfile = async () => {
     try {
@@ -139,13 +137,15 @@ function MyProfile() {
               {myFavouriteSongs.favorites.map((eachSong) => {
                 return (
                   <ListItem button key={eachSong}>
-                    {/*                     <ListItemAvatar>
-                      <Avatar>
-                        <MusicIcon />
-                      </Avatar>
-                    </ListItemAvatar> */}
+                    <ListItemAvatar>
+                      <Avatar src={eachSong.imgSong}/>
+                    </ListItemAvatar> 
 
-                    <ListItemText underline="none" primary={eachSong.title} secondary={eachSong.owner.username}/>
+                    <ListItemText
+                      underline="none"
+                      primary={eachSong.title}
+                      secondary={eachSong.owner.username}
+                    />
                   </ListItem>
                 );
               })}
@@ -173,11 +173,9 @@ function MyProfile() {
               {MySongs.map((eachSong) => {
                 return (
                   <ListItem button key={eachSong}>
-                    {/*                     <ListItemAvatar>
-         <Avatar>
-           <MusicIcon />
-         </Avatar>
-       </ListItemAvatar> */}
+                    <ListItemAvatar>
+                      <Avatar src={eachSong.imgSong}/>
+                    </ListItemAvatar> 
 
                     <ListItemText underline="none" primary={eachSong.title} />
                   </ListItem>
