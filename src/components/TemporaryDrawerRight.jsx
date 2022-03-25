@@ -50,7 +50,7 @@ function TemporaryDrawerRight(props) {
             Follows
         </Typography>
         {follows.map((eachFollow) => (
-            <Link to={`/profile/${eachFollow._id}/details`}>
+            <Link style={{color:'inherit', textDecoration: 'none' }} to={`/profile/${eachFollow._id}/details`}>
                 
           <ListItem button key={eachFollow}>
             {/* <ListItemIcon>

@@ -62,7 +62,8 @@ export default function TemporaryDrawer() {
             PlayList
         </Typography>
         {allPlaylist.map((eachList) => (
-          <Link to={`/${eachList._id}/playlist`} underline="none">
+
+          <Link style={{color:'inherit', textDecoration: 'none' }}  to={`/${eachList._id}/playlist`} underline="none">
           <ListItem button key={eachList}>
             {/* <ListItemIcon>
               {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
