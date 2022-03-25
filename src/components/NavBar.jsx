@@ -76,9 +76,9 @@ function NavBar(props) {
 
   return (
     <div>
-      <AppBar position="static">
-        <Container maxWidth="xl">
-          <Toolbar disableGutters>
+      <AppBar  style={{ background:"#1b5e20" }} position="static">  {/***************************************** CAMBIAR COLOR DEL NAVBAR */}
+        <Container  maxWidth="xl">
+          <Toolbar  disableGutters>
             <SearchField />
 
             <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>

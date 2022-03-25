@@ -70,10 +70,10 @@ function MyProfile() {
   }
 
   return (
-    <Stack
+     <Stack
       direction={{ xs: "column", sm: "row" }}
       spacing={{ xs: 1, sm: 2, md: 4 }}
-    >
+    > 
       <Paper
         sx={{
           p: 10,
@@ -136,7 +136,7 @@ function MyProfile() {
 
               {myFavouriteSongs.favorites.map((eachSong) => { // REVISAR ESTO POR SI TENEMOS FALLO OJO***************
                 return (
-                  <Link to={`/song/${eachSong._id}/details`}>
+                  <Link style={{ color:'inherit', textDecoration: 'none' }}  to={`/song/${eachSong._id}/details`}>
                   <ListItem button key={eachSong}>
                     <ListItemAvatar>
                       <Avatar src={eachSong.imgSong}/>
@@ -176,7 +176,7 @@ function MyProfile() {
 
               {MySongs.map((eachSong) => { // REVISAR ESTO ********************** OJOOOOOOOOOOOOOOOOOOO
                 return (
-                  <Link to={`/song/${eachSong._id}/details`}> 
+                  <Link style={{color:'inherit', textDecoration: 'none' }}  to={`/song/${eachSong._id}/details`}> 
                   <ListItem button key={eachSong}>
                     <ListItemAvatar>
                       <Avatar src={eachSong.imgSong}/>
@@ -193,7 +193,7 @@ function MyProfile() {
           </Paper>
         </Grid>
       </Grid>
-    </Stack>
+     </Stack> 
   );
 }
 

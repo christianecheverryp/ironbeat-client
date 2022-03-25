@@ -52,12 +52,6 @@ function DetailsProfile(props) {
         setFollow(true);
       }
 
-      // console.log(follows)
-      // kata
-      // tienen follows
-      // tienen response.data con el usuario actual
-      // cambiarian SetFollow a true o false
-
     setOtherProfile(response.data);
     } catch (err) {
       if (err.response.status === 401) {
@@ -188,19 +182,23 @@ function DetailsProfile(props) {
                 <Divider/>
                 {favouriteOther.favorites.map((eachSong) => {
                   return (
+
+                  <Link style={{color:'inherit', textDecoration: 'none' }}  to={`/song/${eachSong._id}/details`}> 
+  
                     <ListItem button key={eachSong}>
 
-                    <ListItemAvatar>
-                      <Avatar src={eachSong.imgSong}/>
-                    </ListItemAvatar> 
+                      <ListItemAvatar>
+                        <Avatar src={eachSong.imgSong}/>
+                      </ListItemAvatar> 
 
 
-                    <ListItemText
-                      underline="none"
-                      primary={eachSong.title}
-                      secondary={eachSong.owner.username}
-                    />
-                  </ListItem>
+                      <ListItemText
+                        underline="none"
+                        primary={eachSong.title}
+                        secondary={eachSong.owner.username}
+                      />
+                    </ListItem>
+                  </Link>  
                   )
                 })}
 
@@ -247,15 +245,18 @@ function DetailsProfile(props) {
 
               {mySongs.map((eachSong) => {
                 return (
+                <Link style={{color:'inherit', textDecoration: 'none' }}  to={`/song/${eachSong._id}/details`}> 
+  
                   <ListItem button key={eachSong}>
 
-                  <ListItemAvatar>
-                      <Avatar src={eachSong.imgSong}/>
-                  </ListItemAvatar> 
+                    <ListItemAvatar>
+                        <Avatar src={eachSong.imgSong}/>
+                    </ListItemAvatar> 
 
 
                     <ListItemText underline="none" primary={eachSong.title} />
                   </ListItem>
+                </Link>
                 );
               })}
             </List>
