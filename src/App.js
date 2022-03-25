@@ -58,6 +58,7 @@ function App() {
 
      
     }catch(err) {
+      console.log("Sending to error")
       navigate("/error")
     }
   }

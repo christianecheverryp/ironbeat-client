@@ -19,6 +19,7 @@ function AddToPlaylist(props) {
   const { id } = useParams();
   const [listToAdd, setListToAdd] = useState("")
   const [open, setOpen] = useState(false);
+  const [showForm, setShowForm] = useState(false)
 
   useEffect(() => {
     getAllPlaylist();
@@ -39,11 +40,17 @@ function AddToPlaylist(props) {
     e.preventDefault();
     try {
       await createNewListService(id, { name });
-      // navigate("/")
+      navigate("/")
     } catch (err) {
       navigate("/error");
     }
   };
+
+
+  const handleForm = () => {
+    setShowForm(!showForm)
+
+  }
 
   // crear estado para controlar el select
 
@@ -88,8 +95,8 @@ function AddToPlaylist(props) {
   return (
     <div className="add-page flex-column">
       <h3>Add the track to a playlist</h3>
-      <button>Create a new list</button>
-      <form onSubmit={handleSubmit}>
+      <button onClick={handleForm}>Create a new list</button>
+      {showForm && <form onSubmit={handleSubmit}>
         <label htmlFor="name">nombre de la lista:</label>
         <input
           type="text"
@@ -99,7 +106,8 @@ function AddToPlaylist(props) {
         />
         <br />
         <button>Crear</button>
-      </form>
+      </form>}
+      
 
  
 

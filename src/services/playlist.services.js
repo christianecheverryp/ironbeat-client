@@ -32,6 +32,10 @@ const getSingleListService = (id) => {
     return service.get(`/${id}/playlist`)
 }
 
+const deletePlaylistService = (id) => {
+    return service.delete(`/${id}/delete-list`)
+}
+
 
 
 
@@ -39,7 +43,8 @@ export{
     updateNewList,
     createNewListService,
     getListService,
-    getSingleListService
+    getSingleListService,
+    deletePlaylistService
 
 
 }

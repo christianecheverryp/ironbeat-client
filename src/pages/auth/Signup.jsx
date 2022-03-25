@@ -96,6 +96,7 @@ function Signup() {
   </form>
 
 </div>
+ <p className='error-message'>{errorMessage}</p> 
 
 
 

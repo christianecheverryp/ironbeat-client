@@ -2,8 +2,13 @@ import React from "react";
 import { styled, alpha } from "@mui/material/styles";
 import InputBase from "@mui/material/InputBase";
 import SearchIcon from "@mui/icons-material/Search";
+import { searchService } from "../services/search.services";
+import { useNavigate } from "react-router-dom";
 
 function SearchField() {
+
+  const navigate = useNavigate()
+  
   const Search = styled("div")(({ theme }) => ({
     position: "relative",
     borderRadius: theme.shape.borderRadius,
@@ -46,6 +51,17 @@ function SearchField() {
     },
   }));
 
+  // const handleSearch = async() => {
+  //   try{
+  //     const response = await searchService()
+  //     navigate("/")
+  //   }catch(err){
+  //     navigate("/error")
+     
+  //   }
+    
+  // }
+
   return (
     <Search>
       <SearchIconWrapper>
@@ -55,6 +71,7 @@ function SearchField() {
       <StyledInputBase
         placeholder="Search…"
         inputProps={{ "aria-label": "search" }}
+       
       />
     </Search>
   );

@@ -32,10 +32,13 @@ function Home(props) {
     const response = await getAllMusicService(pageCount)
     setAllMusic([...allMusic, ...response.data])
     // si no hay canciones en response.data, no activas el settimeout
-    setTimeout(() => {
+    if(response.data) {
+      setTimeout(() => {
       setCanFetchSongs(true)
     }, 3000)
     setIsNext(true)
+    }
+    
 
 
   }
@@ -61,10 +64,8 @@ function Home(props) {
     <div className='flex-column align-center'>
 
       <h1>HOME</h1>
-
-
-      
-      <InfiniteScroll
+      <div className="scroll-container">
+          <InfiniteScroll
           dataLength={allMusic.length}
           // next={loadMoreData}
           next={fetchMoreData}
@@ -84,6 +85,8 @@ function Home(props) {
 
       })}
       </InfiniteScroll>
+      </div>
+    
 
 
 

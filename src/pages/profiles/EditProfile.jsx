@@ -107,68 +107,7 @@ const Img = styled('img')({
 
   return (
 
-/*     <Grid container>
 
-        <Box encType="multipart/form-data" component="form"sx={{'& > :not(style)': { m: 1, width: '25ch' },}} noValidate autoComplete="off">
-
-      <Grid item>
-
-          <Avatar src={imgProfile} 
-              sx={{ width: 200, height: 200 }}
-            />
-
-          <label htmlFor="contained-button-file">
-            <Input accept="image/*" id="contained-button-file" multiple type="file" onChange={(e) => handleFileUpload(e)}/>
-            <Button variant="contained" component="span">
-              Upload
-            </Button>
-          </label>
-
-      </Grid>
-
-      <Grid item>
-        <Grid item container direction="column" spacing={2}>
-          <Grid item>
-
-            <TextField id="outlined-required" label="Username"
-            value={username} onChange={(e) => setUsername(e.target.value)}
-            />  
-
-              <TextField
-              id="outlined-multiline-static"
-              label="Bio"
-              multiline
-              rows={4}
-              
-              value={bio}
-              onChange={(e) => setBio(e.target.value)}
-              />    
-
-          </Grid>
-
-        </Grid>
-      </Grid>
-       
-
-        
-
-
-         
-
-
-
-
-          
-          <Button variant="contained" onClick={(e) => handleSubmit(e)} component="span" >
-            Update Profile
-          </Button>
-
-
-
-        </Box>
-
-
-    </Grid> */
     <Paper
       sx={{
         p: 10,
@@ -227,6 +166,10 @@ const Img = styled('img')({
 
         </Grid>
       </Grid>
+      <br />
+      <br />
+<Button onClick={handleClick} size="small" >Delete account</Button>
+
     </Paper>
 
 
